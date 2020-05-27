@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "ccss": "node-sass --importer client/assets/css/importer.js src/assets/css/base.scss src/assets/css/base.css",
     "styleguide": "vue-styleguidist server"
   },
   "keywords": [
