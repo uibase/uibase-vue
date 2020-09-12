@@ -1,7 +1,7 @@
 {
-  "name": "naraco-base-ui",
+  "name": "@uibase/uibase-vue",
   "version": "0.5.0",
-  "description": "Easy UI Sb",
+  "description": "base ui by vue.",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +14,7 @@
   "keywords": [
     "UI"
   ],
-  "author": "junzo matsunoo <junzo.matsunoo@naraco.jp>",
+  "author": "junzo matsunoo <no.diggi.t@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
