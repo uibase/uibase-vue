@@ -21,9 +21,9 @@
   </div>
 </template>
 <script>
-import BaseBreadCrumbs from '../../BaseBreadCrumbs/index'
+import BaseBreadCrumbs from '../BaseBreadCrumbs/index'
 export default {
-  name: 'BaseAdminGridContainer',
+  name: 'AppGridContainer',
   components: { BaseBreadCrumbs },
   props: {
     breadCrumbs: {

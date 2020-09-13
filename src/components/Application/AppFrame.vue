@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: 'BaseAdminFrame'
+  name: 'AppFrame'
 }
 </script>
 <style lang="scss" module>
