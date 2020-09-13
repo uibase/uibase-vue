@@ -34,16 +34,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'primary',
-      validator: (value) =>
-        [
-          undefined,
-          'primary',
-          'secondary',
-          'undone',
-          'border',
-          'border2'
-        ].indexOf(value)
+      default: 'primary'
     },
     byLabel: {
       type: Boolean,
@@ -122,43 +113,14 @@ export default {
   padding: 0 16px;
   text-align: center;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-  border-radius: $buttonBorderRadius;
   box-sizing: border-box;
   outline: none;
   vertical-align: bottom;
   font-family: sans-serif;
-  &.border {
-    background: #fff;
-    border: 2px solid $buttonColorPrimary;
-    color: $buttonColorPrimary;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-  &.border2 {
-    background: #fff;
-    border: 2px solid $buttonColorSecondary;
-    color: $buttonColorSecondary;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-  &.primary {
-    background: $buttonColorPrimary;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-  &.secondary {
-    background: $buttonColorSecondary;
-    color: $white;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
   &.undone {
     background: #fff;
-    color: $buttonColorUndone;
+    color: $blackTrans40;
   }
 }
+@include buttonConfig();
 </style>

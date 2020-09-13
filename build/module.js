@@ -28,12 +28,9 @@ const js = {
 const extractOrInject =
   env === 'production' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
 
-const sassOptions =
-  env === 'production'
-    ? {}
-    : {
-        prependData: "@import 'src/assets/css/theme.scss';"
-      }
+const sassOptions = {
+  prependData: "@import 'uibase/ui.base.scss';"
+}
 
 const scss = {
   test: /\.(sass|scss|css)$/,

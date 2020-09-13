@@ -1,4 +1,5 @@
 .idea
 dist
 bin
+uibase
 node_modules
