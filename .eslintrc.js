@@ -21,5 +21,21 @@ module.exports = {
   // add your custom rules here
   rules: {
     'nuxt/no-cjs-in-config': 'off'
-  }
+  },
+  overrides: [
+    {
+      files: ['**/*.ts'],
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended'
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        sourceType: 'module',
+        project: './tsconfig.json'
+      },
+      plugins: ['@typescript-eslint/eslint-plugin'],
+      rules: {}
+    }
+  ]
 }

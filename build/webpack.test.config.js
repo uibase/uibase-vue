@@ -31,7 +31,7 @@ module.exports = merge(webpackConfig, {
       chokidar
         .watch([path.resolve(__dirname, '../test/**/*.html')])
         .on('all', () => {
-          server.sockWrite(server.sockets, 'content-changed');
+          server.sockWrite(server.sockets, 'content-changed')
         })
     }
   }
