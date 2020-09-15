@@ -41,7 +41,7 @@ export default {
 .menu_item {
   position: relative;
   height: 46px;
-  color: $white;
+  color: #fff;
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -60,7 +60,7 @@ export default {
 }
 .menu_item:global.nuxt-link-active {
   font-weight: bold;
-  background: $white;
+  background: #fff;
   color: $sidebarActiveTextColor;
 }
 .menu_item:global.nuxt-link-active.only_exact {

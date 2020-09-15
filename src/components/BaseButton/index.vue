@@ -119,7 +119,7 @@ export default {
   font-family: sans-serif;
   &.undone {
     background: #fff;
-    color: $blackTrans40;
+    color: #a19f9f;
   }
 }
 @include buttonConfig();

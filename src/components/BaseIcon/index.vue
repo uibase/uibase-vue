@@ -90,49 +90,49 @@ export default {
 </script>
 <style lang="scss" module>
 .black {
-  fill: $black;
+  fill: #140F0F;
 }
 .brightRed {
-  fill: $brightRed;
+  fill: #FF6F61;
 }
 .pastelRed {
-  fill: $pastelRed;
+  fill: #FF7D7D;
 }
 .darkRed {
-  fill: $darkRed;
+  fill: #512B2B;
 }
 .deepRed {
-  fill: $deepRed;
+  fill: #D9072D;
 }
 .redLight {
-  fill: $redLight;
+  fill: #fff9f8;
 }
 .grayLight {
-  fill: $grayLight;
+  fill: #F1F1F1;
 }
 .grayUltraLight {
-  fill: $grayUltraLight;
+  fill: #F1F1F1;
 }
 .blackLight {
-  fill: $blackLight;
+  fill: #333;
 }
 .blackTrans50 {
-  fill: $blackTrans50;
+  fill: #898787;
 }
 .blackTrans40 {
-  fill: $blackTrans40;
+  fill: #a19f9f;
 }
 .blackTrans30 {
-  fill: $blackTrans30;
+  fill: #B9B7B7;
 }
 .blackTrans10 {
-  fill: $blackTrans10;
+  fill: #E7E7E7;
 }
 .deepBlue {
-  fill: $deepBlue;
+  fill: #0F4C81;
 }
 .brightGreen {
-  fill: $brightGreen;
+  fill: #38CC8E;
 }
 .primary {
   fill: $primary;
@@ -150,6 +150,6 @@ export default {
   fill: $notification;
 }
 .white {
-  fill: $white;
+  fill: #fff;
 }
 </style>

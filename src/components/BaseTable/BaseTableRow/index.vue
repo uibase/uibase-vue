@@ -19,7 +19,7 @@ export default {
   width: 100%;
   height: 28px;
   font-size: 12px;
-  color: $white;
+  color: #fff;
   background-color: $primary;
   text-align: left;
   border-radius: 24px 0 0 24px;

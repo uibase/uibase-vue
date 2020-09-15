@@ -17,7 +17,7 @@ export default {
 .col {
   font-size: 14px;
   padding: 16px;
-  border-bottom: 1px solid $blackTrans10;
+  border-bottom: 1px solid #E7E7E7;
 }
 .col_header {
   font-size: 12px;

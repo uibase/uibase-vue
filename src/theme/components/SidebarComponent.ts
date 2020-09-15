@@ -2,7 +2,7 @@ import IThemeComponent from './IThemeComponent'
 import Sidebar from '../types/configations/Sidebar'
 
 export const defaultConfig: Sidebar = {
-  active: { bgColor: '$white', color: '$blackLight' },
+  active: { bgColor: '$white', color: '#333' },
   bgColor: '$black',
   color: '$white',
   menuHeader: { bgColor: '$black' },
@@ -20,12 +20,12 @@ export default class SidebarComponent implements IThemeComponent {
 // About Sidebar
 // sidebar Color for usual
 $sidebarWidth: 200px;
-$sidebarBackgroundColor: $blackLight;
+$sidebarBackgroundColor: #333;
 $sidebarMenuHeaderBackgroundColor: $black;
 $sidebarTextColor: $white;
 // side color when active
 $sidebarActiveBackgroundColor: $white;
-$sidebarActiveTextColor: $blackLight;
+$sidebarActiveTextColor: #333;
     `
   }
 }

@@ -29,7 +29,7 @@ export default {
 <style lang="scss" module>
 .text {
   font-size: 13px;
-  color: $black;
+  color: #140F0F;
   text-align: right;
 }
 </style>

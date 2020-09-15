@@ -100,9 +100,9 @@ export default {
 
 .current {
   padding-top: 0;
-  border-top: 4px solid $brightGreen;
+  border-top: 4px solid $primary;
   background: #fff;
-  color: #000000;
+  color: $baseFont;
   cursor: default;
 }
 

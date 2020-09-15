@@ -5,7 +5,7 @@ import Container from './Container'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
-type ThemeConfig = {
+export interface ThemeConfig {
   colors?: ThemeColors
   button?: Button
   box?: Box

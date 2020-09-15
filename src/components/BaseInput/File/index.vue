@@ -211,6 +211,6 @@ $borderRadius: 4px;
 }
 .error_text {
   font-size: 12px;
-  color: $deepRed;
+  color: $errorBorder;
 }
 </style>

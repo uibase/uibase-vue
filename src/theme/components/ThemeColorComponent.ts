@@ -2,29 +2,20 @@ import IThemeComponent from './IThemeComponent'
 import ThemeColors from '../types/configations/ThemeColors'
 
 export const defaultConfig: ThemeColors = {
-  brightRed: '#FF6F61',
-  pastelRed: '#FF7D7D',
-  darkRed: '#512B2B',
   deepRed: '#D9072D',
   redLight: '#fff9f8',
   white: '#fff',
-  grayLight: '#F1F1F1',
   black: '#140F0F',
-  blackLight: '#333',
-  grayUltraLight: '#f8f8f8',
-  blackTrans50: '#898787',
-  blackTrans40: '#a19f9f',
-  blackTrans30: '#B9B7B7',
-  blackTrans10: '#E7E7E7',
   deepBlue: '#0F4C81',
   brightGreen: '#38CC8E',
   brightYellow: '#ffe18d',
   link: '#509fd2',
-  primaryVariant: '$pastelRed',
-  primary: '$brightRed',
+  primaryVariant: '#69fcbb',
+  primary: '$brightGreen',
   secondary: '$deepBlue',
   error: '$deepRed',
-  notification: '$deepRed'
+  notification: '$deepRed',
+  baseFont: '$black'
 }
 
 export default class ThemeColorComponent implements IThemeComponent {
@@ -41,6 +32,7 @@ export default class ThemeColorComponent implements IThemeComponent {
       secondary,
       error,
       notification,
+      baseFont,
       ...otherColors
     } = this.themeColor
     return `
@@ -52,6 +44,7 @@ export default class ThemeColorComponent implements IThemeComponent {
     $secondary:${secondary};
     $error:${error};
     $notification:${notification};
+    $baseFont:${baseFont};
     `
   }
 }

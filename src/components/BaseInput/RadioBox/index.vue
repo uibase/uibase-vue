@@ -51,7 +51,7 @@ export default {
   background: #fff;
   font-size: 14px;
   align-items: center;
-  border: 1px solid $blackTrans10;
+  border: 1px solid #E7E7E7;
   box-sizing: border-box;
   .circle {
     display: inline-flex;
@@ -70,7 +70,7 @@ export default {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: $deepBlue;
+      background: #81260F;
       opacity: 0;
       transition: all 0.1s linear;
     }

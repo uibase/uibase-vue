@@ -29,6 +29,6 @@ export default {
 </script>
 <style lang="scss" module>
 .list_item {
-  background-color: $white;
+  background-color: #fff;
 }
 </style>

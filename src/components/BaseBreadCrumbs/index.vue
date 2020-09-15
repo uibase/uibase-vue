@@ -64,19 +64,19 @@ export default {
   &_home {
     display: flex;
     align-items: center;
-    color: $deepBlue;
+    color: #0F4C81;
   }
   &_arrow {
     margin: 0 8px;
   }
   &_link {
     display: inline-block;
-    color: $deepBlue;
+    color: #0F4C81;
     text-decoration: none;
   }
   &_no_link {
     display: inline-block;
-    color: $black;
+    color: $baseFont;
     text-decoration: none;
     cursor: default;
   }

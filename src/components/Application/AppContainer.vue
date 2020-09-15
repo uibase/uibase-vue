@@ -54,7 +54,7 @@ export default {
 }
 .bread_crumbs {
   padding: 8px 32px;
-  background: $white;
+  background: #fff;
 }
 
 .title_area {
@@ -63,7 +63,7 @@ export default {
   align-items: center;
   min-width: 1000px;
   background-color: $containerHeaderBackgroundColor;
-  border-bottom: 1px solid $blackTrans10;
+  border-bottom: 1px solid #E7E7E7;
   margin: 0 0 23px 0;
 }
 .title {
@@ -79,9 +79,9 @@ export default {
   grid-area: main;
 }
 .grayLight {
-  background: $grayLight;
+  background: #F1F1F1;
 }
 .white {
-  background: $white;
+  background: #fff;
 }
 </style>

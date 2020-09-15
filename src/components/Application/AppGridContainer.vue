@@ -78,7 +78,7 @@ export default {
 .bread_crumbs {
   height: 30px;
   padding: 0 32px;
-  background: $white;
+  background: #fff;
   display: flex;
   align-items: center;
 }
@@ -89,7 +89,7 @@ export default {
   height: 50px;
   align-items: center;
   background-color: $containerHeaderBackgroundColor;
-  border-bottom: 1px solid $blackTrans10;
+  border-bottom: 1px solid #F1F1F1;
   margin: 0;
 }
 .title {
@@ -120,13 +120,13 @@ export default {
 .footer {
   grid-area: footer;
   padding: 8px 32px;
-  border-top: 1px solid $blackTrans10;
+  border-top: 1px solid #E7E7E7;
   background: $containerFooterBackgroundColor;
 }
 .grayLight {
-  background: $grayLight;
+  background: #F1F1F1;
 }
 .white {
-  background: $white;
+  background: #fff;
 }
 </style>

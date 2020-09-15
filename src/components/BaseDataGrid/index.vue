@@ -16,8 +16,8 @@ export default {
 :global {
   .ag-theme-balham.ag-theme-base-grid {
     .ag-header {
-      background: $deepBlue;
-      color: $white;
+      background: #0F4C81;
+      color: #fff;
     }
   }
 }

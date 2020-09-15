@@ -3,7 +3,7 @@ import Container from '../types/configations/Container'
 
 export const defaultConfig: Container = {
   headerColor: '$white',
-  headerBgColor: '$blackLight',
+  headerBgColor: '#333',
   footerBgColor: '$white'
 }
 
@@ -15,7 +15,7 @@ export default class ContainerComponent implements IThemeComponent {
   generate(): string {
     return `
 $containerHeaderColor: $white;
-$containerHeaderBackgroundColor: $blackLight;
+$containerHeaderBackgroundColor: #333;
 $containerFooterBackgroundColor: $white;
     `
   }

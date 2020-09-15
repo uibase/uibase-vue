@@ -45,7 +45,7 @@ export default {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   }
   .footer {
-    border-top: 1px solid $blackTrans10;
+    border-top: $footerBorder;
   }
 }
 </style>

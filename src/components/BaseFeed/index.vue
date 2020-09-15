@@ -66,7 +66,7 @@ export default {
 }
 
 .count {
-  color: $deepBlue;
+  color: #0F4C81;
   font-weight: 600;
   margin: 0;
   text-align: center;

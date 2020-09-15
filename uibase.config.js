@@ -1,5 +1,6 @@
+// @ts-check
 /**
  *
- * @type {./src/ThemeConfig}
+ * @type {import('./src/theme/types/configations/ThemeConfig').ThemeConfig}
  */
 module.exports = {}

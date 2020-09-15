@@ -3,6 +3,7 @@ type ThemeColors = {
   secondary: string
   error: string
   notification: string
+  baseFont: string
   [key: string]: string
 }
 

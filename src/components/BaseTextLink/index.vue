@@ -87,9 +87,9 @@ export default {
     fill: $primary;
   }
   &.secondary {
-    color: $deepBlue;
+    color: #0F4C81;
     .icon {
-      fill: $deepBlue;
+      fill: #0F4C81;
     }
   }
   &.bold {

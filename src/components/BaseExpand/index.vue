@@ -60,7 +60,7 @@ export default {
 }
 .expand_title_text {
   font-size: 14px;
-  color: $deepBlue;
+  color: #0F4C81;
   flex: 1;
   margin: 0;
 }
