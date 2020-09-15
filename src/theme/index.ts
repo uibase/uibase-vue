@@ -1,21 +1,26 @@
-import ButtonComponent from './components/ButtonComponent'
-import ThemeColorComponent from './components/ThemeColorComponent'
-import BoxComponent from './components/BoxComponent'
-import ContainerComponent from './components/ContainerComponent'
-import HeaderComponent from './components/HeaderComponent'
-import SidebarComponent from './components/SidebarComponent'
-
+import deepmerge from 'deepmerge'
+import createThemeComponents, { defaultConfig } from './components'
 import ThemeConfig from './types/configations/ThemeConfig'
 
-export default (themeConfig: ThemeConfig): string => {
-  let str = ''
+interface IBaseUiTheme {
+  create(config: ThemeConfig): string
+  mergeConfig(...config: ThemeConfig[]): ThemeConfig
+  getDefaultConfig(): ThemeConfig
+}
 
-  str += new ThemeColorComponent(themeConfig.colors).generate()
-  str += new ButtonComponent(themeConfig.button).generate()
-  str += new BoxComponent(themeConfig.box).generate()
-  str += new ContainerComponent(themeConfig.container).generate()
-  str += new HeaderComponent(themeConfig.header).generate()
-  str += new SidebarComponent(themeConfig.sidebar).generate()
+export default class BaseUiTheme implements IBaseUiTheme {
+  create(themeConfig: ThemeConfig): string {
+    const components = createThemeComponents(themeConfig)
+    return components.reduce(
+      (str, component) => (str += component.generate()),
+      ''
+    )
+  }
 
-  return str
+  getDefaultConfig(): ThemeConfig {
+    return defaultConfig
+  }
+  mergeConfig(...themeConfigs: ThemeConfig[]): ThemeConfig {
+    return deepmerge.all(themeConfigs) as ThemeConfig
+  }
 }

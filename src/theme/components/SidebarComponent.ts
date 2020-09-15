@@ -10,9 +10,9 @@ export const defaultConfig: Sidebar = {
 }
 
 export default class SidebarComponent implements IThemeComponent {
-  sidebarConfig: Sidebar
-  constructor(sidebarConfig: Sidebar = defaultConfig) {
-    this.sidebarConfig = { ...defaultConfig, ...sidebarConfig }
+  config: Sidebar
+  constructor(config: Sidebar) {
+    this.config = config
   }
 
   generate(): string {

@@ -6,12 +6,12 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 
 export interface ThemeConfig {
-  colors?: ThemeColors
-  button?: Button
-  box?: Box
-  container?: Container
-  header?: Header
-  sidebar?: Sidebar
+  colors: ThemeColors
+  button: Button
+  box: Box
+  container: Container
+  header: Header
+  sidebar: Sidebar
 }
 
 export default ThemeConfig

@@ -29,7 +29,7 @@ const extractOrInject =
   env === 'production' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
 
 const sassOptions = {
-  prependData: "@import 'uibase/ui.base.scss';"
+  prependData: "@import 'uibase/uibase.theme.scss';"
 }
 
 const scss = {

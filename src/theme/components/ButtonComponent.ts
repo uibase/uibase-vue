@@ -29,17 +29,17 @@ export const defaultConfig: Button = {
 }
 
 export default class ButtonComponent implements IThemeComponent {
-  buttonConfig: Button
+  config: Button
   prefix = 'button'
-  constructor(buttonConfig: Button = defaultConfig) {
-    this.buttonConfig = { ...defaultConfig, ...buttonConfig }
+  constructor(config: Button = defaultConfig) {
+    this.config = config
   }
   generate(): string {
     return `
     @mixin buttonConfig() {
       .${this.prefix} {
-        border-radius: ${this.buttonConfig.radius}px;
-        ${this.generateColorStr(this.buttonConfig.colors)}
+        border-radius: ${this.config.radius}px;
+        ${this.generateColorStr(this.config.colors)}
       }
     }
     `
@@ -64,7 +64,7 @@ export default class ButtonComponent implements IThemeComponent {
         &.${key}Border {
           color: ${colors[key].background};
           background: #fff;
-          border: ${this.buttonConfig.bordered.borderWidth}px solid ${
+          border: ${this.config.bordered.borderWidth}px solid ${
         colors[key].background
       }
         }

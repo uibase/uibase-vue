@@ -11,9 +11,9 @@ export const defaultConfig: Header = {
 }
 
 export default class HeaderComponent implements IThemeComponent {
-  private headerConfig: Header
-  constructor(headerConfig: Header = defaultConfig) {
-    this.headerConfig = { ...defaultConfig, ...headerConfig }
+  private config: Header
+  constructor(config: Header) {
+    this.config = config
   }
   generate(): string {
     return `

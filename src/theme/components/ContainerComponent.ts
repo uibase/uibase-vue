@@ -8,9 +8,9 @@ export const defaultConfig: Container = {
 }
 
 export default class ContainerComponent implements IThemeComponent {
-  private containerConfig: Container
-  constructor(containerConfig: Container = defaultConfig) {
-    this.containerConfig = { ...defaultConfig, ...containerConfig }
+  private config: Container
+  constructor(config: Container) {
+    this.config = config
   }
   generate(): string {
     return `

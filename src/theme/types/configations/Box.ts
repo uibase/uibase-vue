@@ -7,7 +7,7 @@ export type BoxStyle = BgAndColor & {
   [key: string]: string | number | boolean
 }
 
-type Box = {
+export type Box = {
   radius: number
   styles: {
     [key: string]: BoxStyle

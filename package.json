@@ -70,6 +70,7 @@
     "ag-grid-vue": "^23.0.2",
     "commander": "^6.1.0",
     "dayjs": "^1.8.25",
+    "deepmerge": "^4.2.2",
     "simple-valid": "^0.5.1",
     "style-loader": "^1.1.4",
     "tiptap": "^1.29.6",

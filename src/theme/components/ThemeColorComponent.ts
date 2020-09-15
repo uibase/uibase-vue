@@ -19,10 +19,10 @@ export const defaultConfig: ThemeColors = {
 }
 
 export default class ThemeColorComponent implements IThemeComponent {
-  private themeColor: ThemeColors
+  config: ThemeColors
 
-  constructor(themeColor: ThemeColors = defaultConfig) {
-    this.themeColor = { ...defaultConfig, ...themeColor }
+  constructor(config: ThemeColors) {
+    this.config = config
   }
 
   generate(): string {
@@ -34,7 +34,7 @@ export default class ThemeColorComponent implements IThemeComponent {
       notification,
       baseFont,
       ...otherColors
-    } = this.themeColor
+    } = this.config
     return `
     ${Object.keys(otherColors).reduce(
       (str, key) => (str += `$${key}:${otherColors[key]};`),
