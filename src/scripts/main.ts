@@ -12,6 +12,10 @@ const prettier = require('prettier')
 
 const program = new Command()
 
+const baseUi = new BaseUiTheme()
+const workingDir: string = process.env.PWD as string
+
+// create
 program
   .command('create')
   .option('-c, --config <config>', 'select config file', './uibase.config.js')
@@ -20,8 +24,6 @@ program
     (
       options: ExecutableCommandOptions & { config: string; outputDir: string }
     ) => {
-      const baseUi = new BaseUiTheme()
-      const workingDir: string = process.env.PWD as string
       const workingDirConfigFilePath = resolve(workingDir, options.config)
       const outputFromWorkingDir = resolve(workingDir, options.outputDir)
       const outputFile = resolve(outputFromWorkingDir, 'uibase.theme.scss')
@@ -38,5 +40,18 @@ program
       fs.writeFileSync(outputFile, result)
     }
   )
+
+// init
+program.command('init').action(() => {
+  const defaultConfig = baseUi.getDefaultConfig()
+  const defaultConfigStr = `
+  module.exports = ${JSON.stringify(defaultConfig)}
+  `
+  const outputFile = resolve(workingDir, './uibase.config.js')
+  const result = prettier.format(defaultConfigStr, { parser: 'babel' })
+  fs.writeFileSync(outputFile, result)
+})
+
+// styleguide
 
 program.parse(process.argv)

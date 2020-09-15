@@ -1,7 +1,7 @@
-import deepmerge from 'deepmerge'
 import createThemeComponents, { defaultConfig } from './components'
 import ThemeConfig from './types/configations/ThemeConfig'
-
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const deepmerge = require('deepmerge')
 interface IBaseUiTheme {
   create(config: ThemeConfig): string
   mergeConfig(...config: ThemeConfig[]): ThemeConfig

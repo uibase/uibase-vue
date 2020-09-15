@@ -2,7 +2,23 @@ import IThemeComponent from './IThemeComponent'
 import Box from '../types/configations/Box'
 
 export const defaultConfig: Box = {
-  radius: 4
+  radius: 5,
+  styles: {
+    white: {
+      background: '$white',
+      border: false,
+      footerDivide: false,
+      shadow: '0px 1px 4px rgba(0,0,0,0.2)',
+      color: '$baseFont'
+    },
+    black: {
+      background: '$black',
+      color: '$white',
+      border: false,
+      shadow: false,
+      footerDivide: '1px solid #fff'
+    }
+  }
 }
 
 export default class BoxComponent implements IThemeComponent {
