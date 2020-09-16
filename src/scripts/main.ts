@@ -9,6 +9,19 @@ import { ExecutableCommandOptions } from 'commander'
 const { Command } = require('commander')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styleguidist = require('vue-styleguidist')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const styleguideConfig = require(resolve(
+  __dirname,
+  '../../build/styleguide.config.js'
+))
+
+styleguideConfig.logger = {
+  warn: console.warn,
+  info: console.log,
+  debug: console.log
+}
 
 const program = new Command()
 
@@ -53,5 +66,11 @@ program.command('init').action(() => {
 })
 
 // styleguide
+program
+  .command('styleguide')
+  .option('-c, --config <config>', 'additional styleguide config file.')
+  .action((options: { config: string }) => {
+    styleguidist.default(styleguideConfig).server(() => {})
+  })
 
 program.parse(process.argv)

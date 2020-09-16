@@ -58,7 +58,6 @@
     "stylelint-scss": "^3.18.0",
     "typescript": "^4.0.2",
     "vue-loader": "^15.9.1",
-    "vue-styleguidist": "^4.32.2",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.11",
@@ -79,6 +78,7 @@
     "vue-property-decorator": "^8.5.1",
     "vue-select": "^3.10.1",
     "vue-style-loader": "^4.1.2",
+    "vue-styleguidist": "^4.32.3",
     "vue-svg-loader": "^0.16.0"
   }
 }
