@@ -1,3 +1,4 @@
+const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
@@ -21,7 +22,7 @@ const js = {
   exclude: /node_modules/,
   use: {
     loader: 'babel-loader',
-    options: require('../babel.config')
+    options: require(path.resolve(__dirname, '../babel.config'))
   }
 }
 
