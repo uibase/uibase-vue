@@ -14,6 +14,9 @@ import SidebarComponent, {
 import ThemeColorComponent, {
   defaultConfig as themeColorDefaultConfig
 } from './ThemeColorComponent'
+import IconComponent, {
+  defaultConfig as iconDefaultConfig
+} from './IconComponents'
 import ThemeConfig from '../types/configations/ThemeConfig'
 import IThemeComponent from './IThemeComponent'
 
@@ -23,6 +26,7 @@ export { ContainerComponent }
 export { HeaderComponent }
 export { SidebarComponent }
 export { ThemeColorComponent }
+export { IconComponent }
 
 export const defaultConfig: ThemeConfig = {
   box: boxDefaultConfig,
@@ -30,16 +34,27 @@ export const defaultConfig: ThemeConfig = {
   colors: themeColorDefaultConfig,
   container: containerDefaultConfig,
   header: headerDefaultConfig,
-  sidebar: sidebarDefaultConfig
+  sidebar: sidebarDefaultConfig,
+  icons: iconDefaultConfig
 }
 
-export default (themeConfig: ThemeConfig): IThemeComponent[] => {
-  return [
-    new ThemeColorComponent(themeConfig.colors),
-    new ButtonComponent(themeConfig.button),
-    new ContainerComponent(themeConfig.container),
-    new BoxComponent(themeConfig.box),
-    new HeaderComponent(themeConfig.header),
-    new SidebarComponent(themeConfig.sidebar)
-  ]
+export default (
+  themeConfig: ThemeConfig
+): {
+  styles: IThemeComponent[]
+  scripts: { [filename: string]: IThemeComponent }
+} => {
+  return {
+    styles: [
+      new ThemeColorComponent(themeConfig.colors),
+      new ButtonComponent(themeConfig.button),
+      new ContainerComponent(themeConfig.container),
+      new BoxComponent(themeConfig.box),
+      new HeaderComponent(themeConfig.header),
+      new SidebarComponent(themeConfig.sidebar)
+    ],
+    scripts: {
+      icons: new IconComponent(themeConfig.icons)
+    }
+  }
 }

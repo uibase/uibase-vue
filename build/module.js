@@ -17,12 +17,13 @@ const vue = {
   loader: 'vue-loader'
 }
 
+const babelOptions = require(path.resolve(__dirname, '../babel.config'))
 const js = {
   test: /\.js$/,
-  exclude: /node_modules/,
+  exclude: /node_modules\/(?!.*\@uibase).*/,
   use: {
     loader: 'babel-loader',
-    options: require(path.resolve(__dirname, '../babel.config'))
+    options: babelOptions
   }
 }
 

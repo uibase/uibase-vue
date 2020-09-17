@@ -1,37 +1,6 @@
 <script>
-import IconBell from '../../assets/icons/bell.svg'
-import IconArrowDown from '../../assets/icons/arrowDown.svg'
-import IconArrowRight from '../../assets/icons/arrowRight.svg'
-import IconCheckMark from '../../assets/icons/checkmark.svg'
-import IconExclamation from '../../assets/icons/exclamation.svg'
-import IconGrass from '../../assets/icons/glass.svg'
-import IconHome from '../../assets/icons/home.svg'
-import IconPlus from '../../assets/icons/plus.svg'
-import IconQuestion from '../../assets/icons/question.svg'
-import IconSignLeft from '../../assets/icons/signLeft.svg'
-import IconSignRight from '../../assets/icons/signRight.svg'
-import IconStar from '../../assets/icons/star.svg'
-import IconUser from '../../assets/icons/user.svg'
-import IconXmark from '../../assets/icons/xmark.svg'
-
 export default {
   name: 'BaseIcon',
-  components: {
-    IconArrowDown,
-    IconArrowRight,
-    IconBell,
-    IconCheckMark,
-    IconExclamation,
-    IconGrass,
-    IconHome,
-    IconPlus,
-    IconQuestion,
-    IconSignLeft,
-    IconSignRight,
-    IconStar,
-    IconUser,
-    IconXmark
-  },
   props: {
     size: {
       type: String,
