@@ -14,7 +14,7 @@ export default class IconComponents implements IThemeComponent {
     return `
     ${Object.keys(this.config).reduce(
       (str, iconName) =>
-        (str += `import ${iconName} from '${this.config[iconName]}'`),
+        (str += `import ${iconName} from '${this.config[iconName]}';`),
       ''
     )}
     
