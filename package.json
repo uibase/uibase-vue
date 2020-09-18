@@ -1,25 +1,24 @@
 {
   "name": "@uibase/uibase-vue",
-  "version": "0.7.3-beta0.8",
+  "version": "0.7.3-beta0.7",
   "description": "base ui by vue.",
-  "main": "src/main.js",
+  "main": "./dist/main.js",
   "scripts": {
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "script:dev": "npx tsc -w --outDir ./bin ./src/scripts/main.ts",
+    "script:dev": "npx tsc --build ./tsconfig.json -w",
     "script:build": "npx tsc --build ./tsconfig.json",
     "dev": "webpack-dev-server --config build/webpack.test.config.js --hot --progress -d",
-    "build": "npm run script:build && npm run theme:build && cross-env NODE_ENV=production webpack --config build/webpack.config.js --progress && npm run ccss:build",
+    "build": "npm run script:build && npm run ccss:build",
     "ccss": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss src/assets/css/base.css",
-    "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss dist/base.ui.common.css",
-    "theme:build": "node ./bin/scripts/main.js create",
-    "styleguide": "vue-styleguidist server --config ./build/styleguide.config.js"
+    "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss dist/base.ui.common.css"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:uibase/uibase-vue.git"
   },
   "bin": {
-    "uibase": "./bin/scripts/main.js"
+    "uibase": "./dist/scripts/main.js"
   },
   "keywords": [
     "UI"
