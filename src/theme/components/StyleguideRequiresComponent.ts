@@ -13,7 +13,7 @@ export default class StyleguideRequiresComponent implements IThemeComponent {
 
   generate(): string {
     return `
-import '!vue-style-loader!css-loader!sass-loader!../src/assets/css/base.scss';
+import '!vue-style-loader!css-loader!sass-loader!@uibase/uibase-vue/src/assets/css/base.scss';
 ${Object.keys(this.config.icons).reduce(
   (str, iconName) =>
     (str += `import ${iconName} from '${this.config.icons[iconName]}';`),
