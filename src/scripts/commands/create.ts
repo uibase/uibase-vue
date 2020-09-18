@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import ThemeConfig from '../../theme/types/configations/ThemeConfig'
 import BaseUiTheme from '../../theme'
 import ICommand from './ICommand'
-import { listSvgFileNames } from '../../theme/helpers/listSvgFileNames'
+import StyleguideRequire from '../../theme/types/configations/StyleGuideRequire'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
@@ -39,25 +39,31 @@ export class CreateCommand implements ICommand {
         const outputFromWorkingDir = resolve(this.workingDir, options.outputDir)
         const outputFile = resolve(outputFromWorkingDir, 'uibase.theme.scss')
         const outputIconFile = resolve(outputFromWorkingDir, 'icons.js')
-        const themeConfigStr: string = fs.readFileSync(
-          workingDirConfigFilePath,
-          {
-            encoding: 'utf-8'
-          }
+        const outputStyleguideRequire = resolve(
+          outputFromWorkingDir,
+          'styleguide.require.js'
         )
-        const themeConfig = eval(themeConfigStr) as ThemeConfig
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const themeConfig = require(workingDirConfigFilePath) as ThemeConfig
         const defaultConfig = BaseUiTheme.getDefaultConfig()
         const config = BaseUiTheme.mergeConfig(defaultConfig, themeConfig)
         const baseUi = new BaseUiTheme(config)
         const result = prettier.format(baseUi.createStyles(), {
           parser: 'scss'
         })
-        const iconResult = prettier.format(baseUi.createScript('icons'), {
+        const iconResult = prettier.format(baseUi.create('icons'), {
           parser: 'babel'
         })
+        const styleGuideRequireResult = prettier.format(
+          baseUi.create('styleguide'),
+          {
+            parser: 'babel'
+          }
+        )
         fs.mkdirSync(outputFromWorkingDir, { recursive: true })
         fs.writeFileSync(outputFile, result)
         fs.writeFileSync(outputIconFile, iconResult)
+        fs.writeFileSync(outputStyleguideRequire, styleGuideRequireResult)
       })
   }
 }

@@ -1,3 +1,8 @@
+const path = require('path')
+const { listSvgFileNames } = require(path.resolve(
+  __dirname,
+  './bin/theme/helpers/listSvgFileNames'
+))
 module.exports = {
   box: {
     radius: 5,
@@ -70,5 +75,5 @@ module.exports = {
     menuHeader: { bgColor: '$black' },
     width: 200
   },
-  icons: { IconBell: '@uibase/uibase-vue/src/assets/icons/bell.svg' }
+  icons: listSvgFileNames(path.resolve(process.env.PWD, './src/assets/icons'))
 }

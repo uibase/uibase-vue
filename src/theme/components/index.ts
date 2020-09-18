@@ -19,6 +19,7 @@ import IconComponent, {
 } from './IconComponents'
 import ThemeConfig from '../types/configations/ThemeConfig'
 import IThemeComponent from './IThemeComponent'
+import StyleguideRequiresComponent from './StyleguideRequiresComponent'
 
 export { BoxComponent }
 export { ButtonComponent }
@@ -27,6 +28,27 @@ export { HeaderComponent }
 export { SidebarComponent }
 export { ThemeColorComponent }
 export { IconComponent }
+
+export type ThemeComponents = {
+  box: IThemeComponent
+  button: IThemeComponent
+  colors: IThemeComponent
+  container: IThemeComponent
+  header: IThemeComponent
+  sidebar: IThemeComponent
+  icons: IThemeComponent
+  styleguide: IThemeComponent
+}
+
+export type ComponentName =
+  | 'colors'
+  | 'box'
+  | 'button'
+  | 'container'
+  | 'sidebar'
+  | 'header'
+  | 'icons'
+  | 'styleguide'
 
 export const defaultConfig: ThemeConfig = {
   box: boxDefaultConfig,
@@ -38,23 +60,17 @@ export const defaultConfig: ThemeConfig = {
   icons: iconDefaultConfig
 }
 
-export default (
-  themeConfig: ThemeConfig
-): {
-  styles: IThemeComponent[]
-  scripts: { [filename: string]: IThemeComponent }
-} => {
+export default (themeConfig: ThemeConfig): ThemeComponents => {
   return {
-    styles: [
-      new ThemeColorComponent(themeConfig.colors),
-      new ButtonComponent(themeConfig.button),
-      new ContainerComponent(themeConfig.container),
-      new BoxComponent(themeConfig.box),
-      new HeaderComponent(themeConfig.header),
-      new SidebarComponent(themeConfig.sidebar)
-    ],
-    scripts: {
-      icons: new IconComponent(themeConfig.icons)
-    }
+    colors: new ThemeColorComponent(themeConfig.colors),
+    button: new ButtonComponent(themeConfig.button),
+    container: new ContainerComponent(themeConfig.container),
+    box: new BoxComponent(themeConfig.box),
+    header: new HeaderComponent(themeConfig.header),
+    sidebar: new SidebarComponent(themeConfig.sidebar),
+    icons: new IconComponent(themeConfig.icons),
+    styleguide: new StyleguideRequiresComponent({
+      icons: themeConfig.icons
+    })
   }
 }
