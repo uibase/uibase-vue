@@ -6,7 +6,7 @@ export const defaultConfig = {
 }
 
 export default class IconComponents implements IThemeComponent {
-  private config: IconPaths
+  private readonly config: IconPaths
   constructor(config: IconPaths) {
     this.config = config
   }

@@ -2,6 +2,6 @@ export type IconPaths = {
   [iconName: string]: string
 }
 
-export default IconPath
+export default IconPaths
 
 
