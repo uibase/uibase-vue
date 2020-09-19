@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import ThemeConfig from '../../theme/types/configations/ThemeConfig'
 import BaseUiTheme from '../../theme'
 import ICommand from './ICommand'
-import StyleguideRequire from '../../theme/types/configations/StyleGuideRequire'
+import FileProviderFactory from '../factory/provider/fileProvider/FileProviderFactory'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
@@ -37,33 +37,19 @@ export class CreateCommand implements ICommand {
           options.config
         )
         const outputFromWorkingDir = resolve(this.workingDir, options.outputDir)
-        const outputFile = resolve(outputFromWorkingDir, 'uibase.theme.scss')
-        const outputIconFile = resolve(outputFromWorkingDir, 'icons.js')
-        const outputStyleguideRequire = resolve(
-          outputFromWorkingDir,
-          'styleguide.require.js'
-        )
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const themeConfig = require(workingDirConfigFilePath) as ThemeConfig
         const defaultConfig = BaseUiTheme.getDefaultConfig()
         const config = BaseUiTheme.mergeConfig(defaultConfig, themeConfig)
         const baseUi = new BaseUiTheme(config)
-        const result = prettier.format(baseUi.createStyles(), {
-          parser: 'scss'
-        })
-        const iconResult = prettier.format(baseUi.create('icons'), {
-          parser: 'babel'
-        })
-        const styleGuideRequireResult = prettier.format(
-          baseUi.create('styleguide'),
-          {
-            parser: 'babel'
-          }
-        )
-        fs.mkdirSync(outputFromWorkingDir, { recursive: true })
-        fs.writeFileSync(outputFile, result)
-        fs.writeFileSync(outputIconFile, iconResult)
-        fs.writeFileSync(outputStyleguideRequire, styleGuideRequireResult)
+        const factory = new FileProviderFactory(baseUi, outputFromWorkingDir)
+        const componentFileProvider = factory.create('component')
+        const iconFileProvider = factory.create('icons')
+        const styleguideFileProvider = factory.create('styleguide')
+        // provide
+        componentFileProvider.provide()
+        iconFileProvider.provide()
+        styleguideFileProvider.provide()
       })
   }
 }

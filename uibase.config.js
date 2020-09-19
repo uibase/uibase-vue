@@ -1,7 +1,7 @@
 const path = require('path')
 const { listSvgFileNames } = require(path.resolve(
   __dirname,
-  './bin/theme/helpers/listSvgFileNames'
+  './dist/theme/helpers/listSvgFileNames'
 ))
 module.exports = {
   box: {

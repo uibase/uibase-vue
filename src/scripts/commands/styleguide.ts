@@ -41,11 +41,9 @@ export class StyleguideCommand implements ICommand {
           options.config
         ))
 
-
         const userStyleguideConfig = options.styleguide
           ? require(path.resolve(process.env.PWD, options.styleguide))
           : {}
-
 
         const styleguideConfig = createStyleguideConfig(
           userStyleguideConfig,
@@ -57,7 +55,6 @@ export class StyleguideCommand implements ICommand {
           info: console.log,
           debug: console.log
         }
-
 
         const result: any = styleguidist
           .default(styleguideConfig)
