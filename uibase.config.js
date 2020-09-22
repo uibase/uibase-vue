@@ -1,8 +1,3 @@
-const path = require('path')
-const { listSvgFileNames } = require(path.resolve(
-  __dirname,
-  './dist/theme/helpers/listSvgFileNames'
-))
 module.exports = {
   box: {
     radius: 5,
@@ -75,5 +70,5 @@ module.exports = {
     menuHeader: { bgColor: '$black' },
     width: 200
   },
-  icons: listSvgFileNames(path.resolve(process.env.PWD, './src/assets/icons'))
+  icons: './src/assets/icons'
 }

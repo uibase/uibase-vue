@@ -67,6 +67,13 @@ export default (themeConfig: ThemeConfig): ThemeComponents => {
       ? listSvgFileNames(themeConfig.icons)
       : themeConfig.icons
 
+  const styleguideConfig = {
+    ...themeConfig,
+    ...{
+      icons: icons
+    }
+  }
+
   return {
     colors: new ThemeColorComponent(themeConfig.colors),
     button: new ButtonComponent(themeConfig.button),
@@ -75,8 +82,6 @@ export default (themeConfig: ThemeConfig): ThemeComponents => {
     header: new HeaderComponent(themeConfig.header),
     sidebar: new SidebarComponent(themeConfig.sidebar),
     icons: new IconComponent(icons),
-    styleguide: new StyleguideRequiresComponent({
-      icons
-    })
+    styleguide: new StyleguideRequiresComponent(styleguideConfig)
   }
 }

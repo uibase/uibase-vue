@@ -1,24 +1,29 @@
 import IThemeComponent from './IThemeComponent'
-import StyleguideRequire from '../types/configations/StyleGuideRequire'
-
-export const defaultConfig: StyleguideRequire = {
-  icons: {}
-}
+import ThemeConfig from '../types/configations/ThemeConfig'
+import IconPaths from '../types/configations/Icon'
 
 export default class StyleguideRequiresComponent implements IThemeComponent {
-  config: StyleguideRequire
-  constructor(config: StyleguideRequire) {
+  config: ThemeConfig
+  constructor(config: ThemeConfig) {
     this.config = config
   }
 
   generate(): string {
+    // icon path
+    const icons =
+      typeof this.config.icons === 'string'
+        ? {}
+        : (this.config.icons as IconPaths)
+
     return `
-${Object.keys(this.config.icons).reduce(
-  (str, iconName) =>
-    (str += `import ${iconName} from '${this.config.icons[iconName]}';`),
+${Object.keys(icons).reduce(
+  (str, iconName) => (str += `import ${iconName} from '${icons[iconName]}';`),
   ''
 )}
 import Vue from 'vue';
+
+const uibConfig = ${JSON.stringify(this.config)}
+Vue.prototype.$uibConfig = uibConfig;
 
 Vue.component('nuxt-link', {
   props: ['to'],

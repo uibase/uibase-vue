@@ -13,3 +13,6 @@
 ```vue
 <base-icon name="bell" size="40px" color="primary" />
 ```
+
+```[import](./example.vue)
+```
