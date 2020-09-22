@@ -1,6 +1,6 @@
 {
   "name": "@uibase/uibase-vue",
-  "version": "0.7.3-beta0.11",
+  "version": "0.7.4",
   "description": "base ui by vue.",
   "main": "./src/main.js",
   "scripts": {
