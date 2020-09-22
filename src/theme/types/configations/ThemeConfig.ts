@@ -13,7 +13,7 @@ export interface ThemeConfig {
   container: Container
   header: Header
   sidebar: Sidebar
-  icons: IconPaths
+  icons: string | IconPaths
 }
 
 export default ThemeConfig

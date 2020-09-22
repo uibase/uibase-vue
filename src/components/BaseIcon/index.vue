@@ -32,23 +32,7 @@ export default {
       height: this.size
     }
     const className = this.color ? this.$style[this.color] : []
-    const name = (() => {
-      switch (this.name) {
-        case '!':
-          return 'exclamation'
-        case '+':
-          return 'plus'
-        case '?':
-          return 'question'
-        case '*':
-          return 'star'
-        case 'x':
-          return 'xmark'
-        default:
-          return this.name
-      }
-    })()
-    return h(`icon-${name}`, {
+    return h(`icon-${this.name}`, {
       class: className,
       style,
       on: { ...this.$listeners },

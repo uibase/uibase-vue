@@ -1,13 +1,9 @@
 import { Command } from 'commander'
 import { resolve } from 'path'
-import * as fs from 'fs'
 import ThemeConfig from '../../theme/types/configations/ThemeConfig'
 import BaseUiTheme from '../../theme'
 import ICommand from './ICommand'
 import FileProviderFactory from '../factory/provider/fileProvider/FileProviderFactory'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const prettier = require('prettier')
 
 export class CreateCommand implements ICommand {
   private readonly workingDir: string
@@ -39,6 +35,9 @@ export class CreateCommand implements ICommand {
         const outputFromWorkingDir = resolve(this.workingDir, options.outputDir)
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const themeConfig = require(workingDirConfigFilePath) as ThemeConfig
+        if (typeof themeConfig.icons === 'string') {
+          themeConfig.icons = resolve(this.workingDir, themeConfig.icons)
+        }
         const defaultConfig = BaseUiTheme.getDefaultConfig()
         const config = BaseUiTheme.mergeConfig(defaultConfig, themeConfig)
         const baseUi = new BaseUiTheme(config)

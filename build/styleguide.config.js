@@ -4,12 +4,23 @@ const modules = require('./module')
 const plugins = require('./plugins')
 const merge = require('webpack-merge')
 const DefinePlugin = require('webpack').DefinePlugin
+const BaseUiThemePlugin = require('../dist/plugins/BaseUiThemePlugin').default
 const deepmerge = require('deepmerge')
 
-module.exports = (userStyleguideConfig = {}, uibaseConfig = {}) => {
+module.exports = (
+  userStyleguideConfig = {},
+  uibaseConfig = {},
+  configFilePath = ''
+) => {
   plugins.push(
     new DefinePlugin({
       _UIBASE_: uibaseConfig
+    })
+  )
+  plugins.push(
+    new BaseUiThemePlugin({
+      configPath: configFilePath,
+      pathToProvide: path.resolve(process.env.PWD, './uibase')
     })
   )
   const webpackConfig = {

@@ -20,6 +20,7 @@ import IconComponent, {
 import ThemeConfig from '../types/configations/ThemeConfig'
 import IThemeComponent from './IThemeComponent'
 import StyleguideRequiresComponent from './StyleguideRequiresComponent'
+import { listSvgFileNames } from '../helpers/listSvgFileNames'
 
 export { BoxComponent }
 export { ButtonComponent }
@@ -61,6 +62,11 @@ export const defaultConfig: ThemeConfig = {
 }
 
 export default (themeConfig: ThemeConfig): ThemeComponents => {
+  const icons =
+    typeof themeConfig.icons === 'string'
+      ? listSvgFileNames(themeConfig.icons)
+      : themeConfig.icons
+
   return {
     colors: new ThemeColorComponent(themeConfig.colors),
     button: new ButtonComponent(themeConfig.button),
@@ -68,9 +74,9 @@ export default (themeConfig: ThemeConfig): ThemeComponents => {
     box: new BoxComponent(themeConfig.box),
     header: new HeaderComponent(themeConfig.header),
     sidebar: new SidebarComponent(themeConfig.sidebar),
-    icons: new IconComponent(themeConfig.icons),
+    icons: new IconComponent(icons),
     styleguide: new StyleguideRequiresComponent({
-      icons: themeConfig.icons
+      icons
     })
   }
 }

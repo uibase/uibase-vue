@@ -1,6 +1,7 @@
 import { Command } from 'commander'
 import ICommand from './ICommand'
 import { resolve } from 'path'
+import ThemeConfig from '../../theme/types/configations/ThemeConfig'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const styleguidist = require('vue-styleguidist')
@@ -34,12 +35,13 @@ export class StyleguideCommand implements ICommand {
         'extend styleguide config file'
       )
       .action((options: { config: string; styleguide?: string }) => {
-        console.log(options.config, options.styleguide)
+        const uibaseConfigPath = path.resolve(process.env.PWD, options.config)
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const uibaseConfig = require(path.resolve(
-          process.env.PWD,
-          options.config
-        ))
+        const uibaseConfig = require(uibaseConfigPath) as ThemeConfig
+
+        if (typeof uibaseConfig.icons === 'string') {
+          uibaseConfig.icons = path.resolve(process.env.PWD, uibaseConfig.icons)
+        }
 
         const userStyleguideConfig = options.styleguide
           ? require(path.resolve(process.env.PWD, options.styleguide))
@@ -47,7 +49,8 @@ export class StyleguideCommand implements ICommand {
 
         const styleguideConfig = createStyleguideConfig(
           userStyleguideConfig,
-          uibaseConfig
+          uibaseConfig,
+          uibaseConfigPath
         )
 
         styleguideConfig.logger = {
