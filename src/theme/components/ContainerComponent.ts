@@ -1,22 +1,27 @@
-import IThemeComponent from './IThemeComponent'
-import Container from '../types/configations/Container'
+import IThemeComponent from '@theme/components/IThemeComponent'
+import Container from '@uiConfig/Container'
 
 export const defaultConfig: Container = {
-  headerColor: '$white',
-  headerBgColor: '#333',
-  footerBgColor: '$white'
+  header: {
+    background: '#333',
+    fontColor: '$white'
+  },
+  footer: {
+    background: '#333'
+  }
 }
 
-export default class ContainerComponent implements IThemeComponent {
+export default class ContainerComponent implements IThemeComponent<string> {
   private config: Container
   constructor(config: Container) {
     this.config = config
   }
-  generate(): string {
-    return `
+  generate(): Promise<string> {
+    const str = `
 $containerHeaderColor: $white;
 $containerHeaderBackgroundColor: #333;
 $containerFooterBackgroundColor: $white;
     `
+    return Promise.resolve(str)
   }
 }

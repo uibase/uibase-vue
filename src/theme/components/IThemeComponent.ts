@@ -1,6 +1,6 @@
-export default interface IThemeComponent {
+export default interface IThemeComponent<T> {
   /**
    * Generate Sass Configuration String.
    */
-  generate(): string
+  generate(): Promise<T>
 }

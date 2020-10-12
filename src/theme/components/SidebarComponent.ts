@@ -1,22 +1,25 @@
-import IThemeComponent from './IThemeComponent'
-import Sidebar from '../types/configations/Sidebar'
+import IThemeComponent from '@theme/components/IThemeComponent'
+import Sidebar from '@uiConfig/Sidebar'
 
 export const defaultConfig: Sidebar = {
-  active: { bgColor: '$white', color: '#333' },
-  bgColor: '$black',
-  color: '$white',
-  menuHeader: { bgColor: '$black' },
+  active: {
+    background: '$white',
+    fontColor: '#333'
+  },
+  background: '$black',
+  fontColor: '$white',
+  menuHeader: { background: '$black' },
   width: 200
 }
 
-export default class SidebarComponent implements IThemeComponent {
+export default class SidebarComponent implements IThemeComponent<string> {
   config: Sidebar
   constructor(config: Sidebar) {
     this.config = config
   }
 
-  generate(): string {
-    return `
+  generate(): Promise<string> {
+    const str = `
 // About Sidebar
 // sidebar Color for usual
 $sidebarWidth: 200px;
@@ -27,5 +30,6 @@ $sidebarTextColor: $white;
 $sidebarActiveBackgroundColor: $white;
 $sidebarActiveTextColor: #333;
     `
+    return Promise.resolve(str)
   }
 }

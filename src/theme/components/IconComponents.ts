@@ -1,17 +1,17 @@
-import IThemeComponent from './IThemeComponent'
-import { IconPaths } from '../../theme/types/configations/Icon'
+import IThemeComponent from '@theme/components/IThemeComponent'
+import { IconPaths } from '@uiConfig/Icon'
 
 export const defaultConfig = {
   IconBell: '@uibase/uibase-vue/src/assets/icons/bell.svg'
 }
 
-export default class IconComponents implements IThemeComponent {
+export default class IconComponents implements IThemeComponent<string> {
   private readonly config: IconPaths
   constructor(config: IconPaths) {
     this.config = config
   }
-  generate(): string {
-    return `
+  generate(): Promise<string> {
+    const str = `
     ${Object.keys(this.config).reduce(
       (str, iconName) =>
         (str += `import ${iconName} from '${this.config[iconName]}';`),
@@ -25,5 +25,6 @@ export default class IconComponents implements IThemeComponent {
       )}
     }
     `
+    return Promise.resolve(str)
   }
 }

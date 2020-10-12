@@ -1,19 +1,20 @@
 module.exports = {
+  roots: ['<rootDir>/src'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/client/$1',
-    '^~/(.*)$': '<rootDir>/client/$1',
-    '^@@/(.*)$': '<rootDir>/$1',
-    '^~~/(.*)$': '<rootDir>/$1',
-    '^vue$': 'vue/dist/vue.common.js'
+    '^@uiConfig/(.*)$': '<rootDir>/src/theme/types/config/$1',
+    '^@factory/(.*)$': '<rootDir>/src/factories/$1',
+    '^@helper/(.*)$': '<rootDir>/src/helpers/$1',
+    '^@theme/(.*)$': '<rootDir>/src/theme/$1',
+    '^@src/(.*)$': '<rootDir>/src/$1'
   },
-  moduleFileExtensions: ['js', 'vue', 'json'],
+  moduleFileExtensions: ['js', 'vue', 'json', 'jsx', 'ts', 'tsx'],
+  testMatch: [
+    '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)'
+  ],
   transform: {
-    '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   collectCoverage: false,
-  collectCoverageFrom: [
-    '<rootDir>/client/components/**/*.vue',
-    '<rootDir>/client/pages/**/*.vue'
-  ]
+  collectCoverageFrom: []
 }

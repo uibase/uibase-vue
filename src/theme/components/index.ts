@@ -1,7 +1,6 @@
 import BoxComponent, { defaultConfig as boxDefaultConfig } from './BoxComponent'
-import ButtonComponent, {
-  defaultConfig as buttonDefaultConfig
-} from './ButtonComponent'
+import ButtonComponent from './Button/ButtonComponent'
+import buttonDefaultConfig from './Button/defaultConfig'
 import ContainerComponent, {
   defaultConfig as containerDefaultConfig
 } from './ContainerComponent'
@@ -17,10 +16,11 @@ import ThemeColorComponent, {
 import IconComponent, {
   defaultConfig as iconDefaultConfig
 } from './IconComponents'
-import ThemeConfig from '../types/configations/ThemeConfig'
+import ThemeConfig from '@uiConfig/ThemeConfig'
 import IThemeComponent from './IThemeComponent'
 import StyleguideRequiresComponent from './StyleguideRequiresComponent'
-import { listSvgFileNames } from '../helpers/listSvgFileNames'
+import { listSvgFileNames } from '../../helpers/listSvgFileNames'
+import { VueButtonComponent } from '@theme/components/Button'
 
 export { BoxComponent }
 export { ButtonComponent }
@@ -31,14 +31,14 @@ export { ThemeColorComponent }
 export { IconComponent }
 
 export type ThemeComponents = {
-  box: IThemeComponent
-  button: IThemeComponent
-  colors: IThemeComponent
-  container: IThemeComponent
-  header: IThemeComponent
-  sidebar: IThemeComponent
-  icons: IThemeComponent
-  styleguide: IThemeComponent
+  box: IThemeComponent<string>
+  button: IThemeComponent<string>
+  colors: IThemeComponent<string>
+  container: IThemeComponent<string>
+  header: IThemeComponent<string>
+  sidebar: IThemeComponent<string>
+  icons: IThemeComponent<string>
+  styleguide: IThemeComponent<string>
 }
 
 export type ComponentName =
@@ -52,9 +52,11 @@ export type ComponentName =
   | 'styleguide'
 
 export const defaultConfig: ThemeConfig = {
+  global: {
+    colors: themeColorDefaultConfig
+  },
   box: boxDefaultConfig,
   button: buttonDefaultConfig,
-  colors: themeColorDefaultConfig,
   container: containerDefaultConfig,
   header: headerDefaultConfig,
   sidebar: sidebarDefaultConfig,
@@ -75,8 +77,8 @@ export default (themeConfig: ThemeConfig): ThemeComponents => {
   }
 
   return {
-    colors: new ThemeColorComponent(themeConfig.colors),
-    button: new ButtonComponent(themeConfig.button),
+    colors: new ThemeColorComponent(themeConfig.global.colors),
+    button: new VueButtonComponent(themeConfig.button, themeConfig.global),
     container: new ContainerComponent(themeConfig.container),
     box: new BoxComponent(themeConfig.box),
     header: new HeaderComponent(themeConfig.header),

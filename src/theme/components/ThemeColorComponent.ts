@@ -1,5 +1,5 @@
-import IThemeComponent from './IThemeComponent'
-import ThemeColors from '../types/configations/ThemeColors'
+import IThemeComponent from '@theme/components/IThemeComponent'
+import ThemeColors from '@uiConfig/ThemeColors'
 
 export const defaultConfig: ThemeColors = {
   deepRed: '#D9072D',
@@ -18,14 +18,14 @@ export const defaultConfig: ThemeColors = {
   baseFont: '$black'
 }
 
-export default class ThemeColorComponent implements IThemeComponent {
+export default class ThemeColorComponent implements IThemeComponent<string> {
   config: ThemeColors
 
   constructor(config: ThemeColors) {
     this.config = config
   }
 
-  generate(): string {
+  generate(): Promise<string> {
     //
     const {
       primary,
@@ -35,7 +35,8 @@ export default class ThemeColorComponent implements IThemeComponent {
       baseFont,
       ...otherColors
     } = this.config
-    return `
+
+    const str = `
     ${Object.keys(otherColors).reduce(
       (str, key) => (str += `$${key}:${otherColors[key]};`),
       ''
@@ -46,5 +47,6 @@ export default class ThemeColorComponent implements IThemeComponent {
     $notification:${notification};
     $baseFont:${baseFont};
     `
+    return Promise.resolve(str)
   }
 }

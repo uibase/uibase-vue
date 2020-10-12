@@ -1,22 +1,22 @@
-import IThemeComponent from './IThemeComponent'
-import Header from '../types/configations/Header'
+import IThemeComponent from '@theme/components/IThemeComponent'
+import Header from '@uiConfig/Header'
 
 export const defaultConfig: Header = {
-  bgColor: '$white',
-  bottomBorder: '1px solid #ccc',
-  color: '$black',
-  hasShadow: false,
-  shadowColor: '',
+  background: '$white',
+  bottomBorder: {
+    border: '1px solid #ccc'
+  },
+  fontColor: '$black',
   height: 50
 }
 
-export default class HeaderComponent implements IThemeComponent {
+export default class HeaderComponent implements IThemeComponent<string> {
   private config: Header
   constructor(config: Header) {
     this.config = config
   }
-  generate(): string {
-    return `
+  generate(): Promise<string> {
+    const str = `
 // About Header
 $headerHeight: 50px;
 $headerBackgroundColor: $white;
@@ -30,5 +30,6 @@ $headerShadowColor: rgba(0, 0, 0, 0.2);
 // set border style condition, if you want to set border.
 $headerBottomBorder: 1px solid #ccc;
     `
+    return Promise.resolve(str)
   }
 }
