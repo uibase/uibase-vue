@@ -6,6 +6,7 @@ import UBConfig from '@theme/config/UBConfig'
 import TemplateEjsRenderer from '@helper/TemplateRenderer/TemplateEjsRenderer'
 import CssStyleManager from '@helper/StyleManager/CssStyleManager'
 import ProvidedFsFileRepository from '@src/repositories/ProvidedFsFileRepository'
+import VueBoxComponent from '@src/vue/components/Box/VueBoxComponent'
 
 it('provide test', () => {
   const ubConfig = new UBConfig({
@@ -17,6 +18,14 @@ it('provide test', () => {
         error: '#001100',
         baseFont: 'green'
       }
+    },
+    box: {
+      styles: {
+        test: {
+          background: '#ccc'
+        }
+      },
+      radius: 12
     },
     button: {
       colors: {
@@ -49,15 +58,19 @@ it('provide test', () => {
       }
     }
   })
+  const templateRenderer = new TemplateEjsRenderer(new CssStyleManager())
   const templateList: TemplateList = {
-    button: new VueButtonComponent(
-      ubConfig,
-      new TemplateEjsRenderer(new CssStyleManager())
-    )
+    button: new VueButtonComponent(ubConfig, templateRenderer),
+    box: new VueBoxComponent(ubConfig, templateRenderer)
   }
+  const pathToProvide = path.resolve(__dirname, './.testUi')
+  console.log(pathToProvide)
   const provider = new ProvideVueTemplatesInteractor(
-    path.resolve(__dirname, './.testUi'),
+    pathToProvide,
     new ProvidedFsFileRepository(),
     templateList
   )
+  provider.handle().then((paths) => {
+    console.log(paths)
+  })
 })

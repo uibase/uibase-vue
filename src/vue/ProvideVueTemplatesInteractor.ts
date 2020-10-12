@@ -1,13 +1,13 @@
 import path from 'path'
-import IProvideTemplates from 'src/useCases/IProvideTemplates'
 import IProvidedFileRepository from 'src/repositories/IProvidedFileRepository'
 import { TemplateList } from '@theme/types/TemplateList'
 import { ComponentTypeName } from '@theme/types/ComponentTypeName'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
 import { ThemeComponent } from '@theme/types/ThemeComponent'
+import IProvideVueTemplatesUseCase from '@src/useCases/IProvideVueTemplatesUseCase'
 
 export default class ProvideVueTemplatesInteractor
-  implements IProvideTemplates {
+  implements IProvideVueTemplatesUseCase {
   private repository: IProvidedFileRepository
   private templates: TemplateList
   private readonly pathToProvide: string
@@ -31,10 +31,11 @@ export default class ProvideVueTemplatesInteractor
             const paths: RenderedFilePath[] = []
             templateComponents.forEach((templateComponent) => {
               const [dirName, fileName] = templateComponent.fileName
-              const dir = path.resolve(
+              const dir = path.join(
                 this.pathToProvide,
                 `/${dirName ? dirName + '/' : ''}`
               )
+              console.log(this.pathToProvide, dir)
               this.repository.add(dir, fileName, templateComponent.componentStr)
               paths.push(path.resolve(dir, fileName))
             })

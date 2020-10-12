@@ -2,6 +2,7 @@ import { TemplateList } from '@theme/types/TemplateList'
 import VueButtonComponent from '@src/vue/components/Button/VueButtonComponent'
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import UBConfig from '@theme/config/UBConfig'
+import VueBoxComponent from '@src/vue/components/Box/VueBoxComponent'
 
 export default function(
   themeConfig: UBConfig,
@@ -10,7 +11,7 @@ export default function(
   try {
     const templateList = {} as TemplateList
     const button = themeConfig.button()
-    // const box = themeConfig.box()
+    const box = themeConfig.box()
     // const sidebar = themeConfig.sidebar()
     // const header = themeConfig.header()
     // const container = themeConfig.container()
@@ -21,6 +22,8 @@ export default function(
         themeConfig,
         templateRenderer
       )
+    if (box)
+      templateList.box = new VueBoxComponent(themeConfig, templateRenderer)
     return templateList as TemplateList
   } catch (e) {
     throw e

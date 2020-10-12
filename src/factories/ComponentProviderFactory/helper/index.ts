@@ -1,6 +1,7 @@
 import ThemeConfig from '@uiConfig/ThemeConfig'
 import { DiffResult } from '@theme/types/DiffResult'
 import Global from '@uiConfig/Global'
+import { RenderedFilePath } from '@theme/types/RenderedFilePath'
 
 export function findConfigDiff(
   newConfig: ThemeConfig,
@@ -40,4 +41,17 @@ export function findConfigDiff(
     }
   })
   return result
+}
+
+export function componentNamePath(
+  path: RenderedFilePath,
+  extension: string
+): [string, string] {
+  const regExp = new RegExp(`/([a-z0-9A-Z]*)\\.${extension}$`)
+  const match = path.match(regExp)
+  if (match) {
+    return [match[1], path]
+  } else {
+    throw 'componentNamePathError:: Cannot find component name. Component file name should be [a-z0-9A-Z]* pattern. or check extension'
+  }
 }

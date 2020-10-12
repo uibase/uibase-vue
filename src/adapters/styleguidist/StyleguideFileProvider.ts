@@ -1,5 +1,5 @@
-import IComponentProvider from '../IComponentProvider'
-import BaseUiTheme from '@theme/index'
+import IComponentProvider from '@factory/ComponentProviderFactory/IComponentProvider'
+import BaseUiTheme from '@src/theme'
 import { resolve } from 'path'
 import * as fs from 'fs'
 

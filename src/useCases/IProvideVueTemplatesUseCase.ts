@@ -1,5 +1,5 @@
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
 
-export default interface IProvideTemplates {
+export default interface IProvideVueTemplatesUseCase {
   handle(): Promise<RenderedFilePath[]>
 }
