@@ -12,8 +12,7 @@
     "plugin:build": "webpack --config build/webpack.plugin.config.js",
     "dev": "webpack-dev-server --config workspace/webpack/webpack.workspace.config.js --hot --progress -d",
     "build": "npm run command:build && npm run plugin:build && npm run ccss:build",
-    "ccss": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss src/assets/css/base.css",
-    "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss dist/base.ui.common.css"
+    "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss lib/css/base.ui.common.css"
   },
   "repository": {
     "type": "git",
