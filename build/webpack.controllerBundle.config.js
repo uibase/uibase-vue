@@ -11,7 +11,7 @@ module.exports = {
   externals: [nodeExternals()],
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.js', '.ts', '.ejs'],
     alias: {
       '@uiConfig': path.resolve(__dirname, '../src/theme/types/config/'),
       '@theme': path.resolve(__dirname, '../src/theme/'),
@@ -27,6 +27,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.ejs$/,
+        use: 'raw-loader'
+      },
       {
         test: /\.ts$/,
         exclude: /node_modules/,

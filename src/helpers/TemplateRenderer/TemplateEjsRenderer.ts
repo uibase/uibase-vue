@@ -24,6 +24,6 @@ export default class TemplateEjsRenderer implements ITemplateRenderer {
   }
 
   render(templateFilePath: string, config: isConfig): Promise<string> {
-    return ejs.renderFile(templateFilePath, config, this.options)
+    return ejs.render(templateFilePath, config, this.options) as Promise<string>
   }
 }

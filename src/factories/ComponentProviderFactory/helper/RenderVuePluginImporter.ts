@@ -5,7 +5,7 @@ import ejs from 'ejs'
 
 export class RenderVuePluginImporter implements IRenderPluginImporter {
   async render(
-    dir: string,
+    templateString: string,
     renderedFilPaths: RenderedFilePath[]
   ): Promise<string> {
     const paths: [string, string][] = renderedFilPaths.reduce(
@@ -15,8 +15,8 @@ export class RenderVuePluginImporter implements IRenderPluginImporter {
       },
       []
     )
-    return ejs.renderFile(
-      dir,
+    return ejs.render(
+      templateString,
       {
         paths
       },

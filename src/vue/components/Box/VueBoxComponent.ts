@@ -4,6 +4,8 @@ import { TemplateComponent } from '@theme/types/TemplateComponent'
 import UBConfig from '@theme/config/UBConfig'
 import Box from '@uiConfig/Box'
 import IBoxComponent from '@theme/components/IBoxComponent'
+import boxTemplate from './box.ejs'
+import boxTitleTemplate from './box.ejs'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
@@ -20,11 +22,11 @@ export default class VueButtonComponent implements IBoxComponent {
   async generate(): Promise<TemplateComponent[]> {
     if (this.themeConfig.box()) {
       const box = await this.templateRenderer.render(
-        path.resolve(__dirname, './box.ejs'),
+        boxTemplate,
         this.themeConfig.box() as Box
       )
       const boxTitle = await this.templateRenderer.render(
-        path.resolve(__dirname, './box-title.ejs'),
+        boxTitleTemplate,
         this.themeConfig.box() as Box
       )
       return [

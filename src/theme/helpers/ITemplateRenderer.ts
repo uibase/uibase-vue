@@ -1,5 +1,5 @@
 import { isConfig } from '@uiConfig/isConfig'
 
 export default interface ITemplateRenderer {
-  render(templateFilePath: string, config: isConfig): Promise<string>
+  render(templateString: string, config: isConfig): Promise<string>
 }

@@ -10,7 +10,7 @@ module.exports = merge(webpackControllerBundle, {
     __dirname: true
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../lib'),
     publicPath: '/',
     filename: '[name].js'
   }

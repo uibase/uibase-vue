@@ -10,7 +10,7 @@ module.exports = merge(controllerBundle, {
     )
   },
   output: {
-    path: path.resolve(__dirname, '../dist/plugins'),
+    path: path.resolve(__dirname, '../lib/plugins'),
     publicPath: '/',
     filename: '[name].js',
     libraryExport: 'default',

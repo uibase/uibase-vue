@@ -11,6 +11,7 @@ import UBConfig from '@theme/config/UBConfig'
 import { ThemeComponent } from '@theme/types/ThemeComponent'
 import ProvideVueTemplatesInteractor from '@src/vue/ProvideVueTemplatesInteractor'
 import { RenderVuePluginImporter } from '@factory/ComponentProviderFactory/helper/RenderVuePluginImporter'
+import pluginImportTemplate from './index.js.ejs'
 
 export default class VueComponentProvider implements IComponentProvider {
   private readonly pathToProvide: string
@@ -112,9 +113,8 @@ export default class VueComponentProvider implements IComponentProvider {
   private async renderPluginImporter(
     renderedFilePaths: RenderedFilePath[]
   ): Promise<boolean> {
-    const dir = path.resolve(__dirname, './index.js.ejs')
     const importer = new RenderVuePluginImporter()
-    const str = await importer.render(dir, renderedFilePaths)
+    const str = await importer.render(pluginImportTemplate, renderedFilePaths)
     this.repository.add(this.pathToProvide, 'index.js', str)
     return true
   }
