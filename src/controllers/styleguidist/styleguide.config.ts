@@ -9,12 +9,10 @@ const deepmerge = require('deepmerge')
 export default (
   userStyleguideConfig = {},
   configFilePath = '',
-  pathToProvide = ''
 ) => {
   plugins.push(
     new UiBasePlugin({
-      configPath: configFilePath,
-      pathToProvide: pathToProvide
+      configPath: configFilePath
     })
   )
   const webpackConfig = {

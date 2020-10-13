@@ -21,6 +21,10 @@
   "bin": {
     "uibase": "./bin/index.js"
   },
+  "files": [
+    "bin/",
+    "lib/"
+  ],
   "keywords": [
     "UI"
   ],

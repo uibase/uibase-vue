@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import UiBase from '../.uiBase'
+import UiBase from '../../.uiBase'
 import App from './App'
 
 Vue.use(UiBase)

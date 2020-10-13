@@ -1,3 +1,4 @@
+import path from 'path'
 import webpack, { Compiler } from 'webpack'
 import { ComponentProviderFactory } from '@factory/ComponentProviderFactory/index'
 import fs from 'fs'
@@ -7,7 +8,6 @@ import Compilation = webpack.compilation.Compilation
 import IComponentProvider from '@factory/ComponentProviderFactory/IComponentProvider'
 
 export type UiBasePluginOption = {
-  pathToProvide: string
   configPath: string
 }
 
@@ -23,9 +23,8 @@ export default class UiBasePlugin {
     this.initialize = false
   }
   apply(compiler: Compiler) {
-    const providerFactory = new ComponentProviderFactory(
-      this.options.pathToProvide
-    )
+    const pathToProvide = path.resolve(__dirname, '../../../../.uiBase')
+    const providerFactory = new ComponentProviderFactory(pathToProvide)
     const vueProvider = providerFactory.create('vue')
     console.log('create Vue Provider.', vueProvider)
     compiler.hooks.emit.tapAsync(

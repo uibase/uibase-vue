@@ -3,3 +3,4 @@ dist
 bin
 uibase
 node_modules
+.uiBase
