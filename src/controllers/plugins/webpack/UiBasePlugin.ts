@@ -26,7 +26,7 @@ export default class UiBasePlugin {
     const pwd = process.env.PWD || ''
     const pathToProvide = path.resolve(
       pwd,
-      '/node_modules/@uibase/uibase-vue/.uiBase'
+      './node_modules/@uibase/uibase-vue/.uiBase'
     )
     const providerFactory = new ComponentProviderFactory(pathToProvide)
     const vueProvider = providerFactory.create('vue')
@@ -53,7 +53,7 @@ export default class UiBasePlugin {
     compiler.hooks.watchClose.tap(
       'ui base plugin delete all files.',
       async (compiler, callback) => {
-        console.log('die yaboo!!!!!!!!-----------')
+        // TODO:: clear .uiBase folder.
         callback()
       }
     )
