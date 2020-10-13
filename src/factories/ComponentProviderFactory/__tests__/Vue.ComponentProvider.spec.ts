@@ -50,6 +50,30 @@ test('Vue Component Provider', async () => {
       }
     }
   }
+  console.log('=============first=============')
   const paths = await provider.provide(config)
   console.log(paths)
+  config.box = {
+    styles: {
+      primary: {
+        background: '$primary',
+        fontColor: '$baseFont'
+      },
+      secondary: {
+        background: '$notification',
+        fontColor: '$error'
+      },
+      third: {
+        background: '$secondary',
+        fontColor: '$notification'
+      }
+    }
+  }
+  console.log('=============second=============')
+  const path2 = await provider.provide(config)
+  console.log(path2)
+  console.log('=============third=============')
+  delete config.box
+  const path3 = await provider.provide(config)
+  console.log(path3)
 })

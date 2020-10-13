@@ -1,7 +1,7 @@
 import {
   componentNamePath,
   findConfigDiff
-} from '@factory/ComponentProviderFactory/helper/helper'
+} from '@factory/ComponentProviderFactory/helper/index'
 import ThemeConfig from '@uiConfig/ThemeConfig'
 
 test('findConfigDiff', () => {

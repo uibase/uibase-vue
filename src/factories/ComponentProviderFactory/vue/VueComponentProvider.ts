@@ -1,12 +1,8 @@
-import ejs from 'ejs'
 import path from 'path'
 import IComponentProvider from '../IComponentProvider'
 import ThemeConfig from '@uiConfig/ThemeConfig'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
-import {
-  componentNamePath,
-  findConfigDiff
-} from '@factory/ComponentProviderFactory/helper/index'
+import { findConfigDiff } from '@factory/ComponentProviderFactory/helper/index'
 import IProvidedFileRepository from '@src/repositories/IProvidedFileRepository'
 import { TemplateList } from '@theme/types/TemplateList'
 import { ComponentTypeName } from '@theme/types/ComponentTypeName'
@@ -18,8 +14,9 @@ import { RenderVuePluginImporter } from '@factory/ComponentProviderFactory/helpe
 
 export default class VueComponentProvider implements IComponentProvider {
   private readonly pathToProvide: string
-  private readonly previousConfig: ThemeConfig
+  private previousConfig: ThemeConfig
   private templateFactory: ITemplateFactory
+  private renderedPaths: RenderedFilePath[]
   private readonly repository: IProvidedFileRepository
 
   constructor(
@@ -31,6 +28,7 @@ export default class VueComponentProvider implements IComponentProvider {
     this.templateFactory = templateFactory
     this.repository = repository
     this.previousConfig = {} as ThemeConfig
+    this.renderedPaths = []
   }
 
   async provide(themeConfig: ThemeConfig): Promise<RenderedFilePath[]> {
@@ -44,11 +42,11 @@ export default class VueComponentProvider implements IComponentProvider {
       ? themeConfig
       : newComponents
     const changedVueTemplateList = this.templateFactory.generate(
-      new UBConfig(targetComponents),
+      new UBConfig({ ...targetComponents, global: themeConfig.global }),
       'vue'
     )
     const deletedVueTemplateList = this.templateFactory.generate(
-      new UBConfig(deletedComponents),
+      new UBConfig({ ...deletedComponents, global: themeConfig.global }),
       'vue'
     )
 
@@ -61,17 +59,26 @@ export default class VueComponentProvider implements IComponentProvider {
     const renderedPaths = await interactor.handle()
 
     // 削除処理
-    await this.deleteComponentFile(deletedVueTemplateList)
+    const deletedPaths = await this.deleteComponentFile(deletedVueTemplateList)
 
-    await this.renderPluginImporter(renderedPaths)
+    // パスマネージメントが必要
+    this.renderedPaths = [...this.renderedPaths, ...renderedPaths]
+    this.renderedPaths = this.renderedPaths.filter(
+      (renderedPath) => !deletedPaths.includes(renderedPath)
+    )
+    this.renderedPaths = Array.from(new Set(this.renderedPaths))
+    console.log(this.renderedPaths)
+    await this.renderPluginImporter(this.renderedPaths)
 
-    return renderedPaths
+    this.previousConfig = { ...themeConfig }
+
+    return this.renderedPaths
   }
 
   private async deleteComponentFile(
     targetTemplateList: TemplateList
-  ): Promise<boolean> {
-    const promises: Promise<boolean>[] = []
+  ): Promise<RenderedFilePath[]> {
+    const promises: Promise<RenderedFilePath[]>[] = []
     Object.keys(targetTemplateList).forEach((componentName) => {
       promises.push(
         (targetTemplateList[
@@ -79,25 +86,33 @@ export default class VueComponentProvider implements IComponentProvider {
         ] as ThemeComponent)
           .generate()
           .then((templateComponents) => {
+            const paths: RenderedFilePath[] = []
             templateComponents.forEach((templateComponent) => {
               const [dirName, fileName] = templateComponent.fileName
-              const dir = path.resolve(
+              const dir = path.join(
                 this.pathToProvide,
                 `/${dirName ? dirName + '/' : ''}`
               )
               this.repository.remove(dir, fileName)
+              paths.push(path.resolve(dir, fileName))
             })
-            return true
+            return paths
           })
       )
     })
-    return Promise.all(promises).then(() => true)
+    return Promise.all(promises).then((deletedPathGroups) => {
+      const paths: RenderedFilePath[] = []
+      deletedPathGroups.forEach((pathGroup) =>
+        pathGroup.forEach((p) => paths.push(p))
+      )
+      return paths
+    })
   }
 
   private async renderPluginImporter(
     renderedFilePaths: RenderedFilePath[]
   ): Promise<boolean> {
-    const dir = path.resolve(__dirname, './index.ejs')
+    const dir = path.resolve(__dirname, './index.js.ejs')
     const importer = new RenderVuePluginImporter()
     const str = await importer.render(dir, renderedFilePaths)
     this.repository.add(this.pathToProvide, 'index.js', str)
