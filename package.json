@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "devTool:build": "webpack --config build/webpack.devTool.config.js",
     "command:dev": "webpack --config build/webpack.command.config.js -w",
     "command:build": "webpack --config build/webpack.command.config.js",
     "plugin:build": "webpack --config build/webpack.plugin.config.js",

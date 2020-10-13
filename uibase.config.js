@@ -10,11 +10,11 @@ module.exports = {
       brightYellow: '#ffe18d',
       link: '#509fd2',
       primaryVariant: '#69fcbb',
-      primary: '$brightGreen',
-      secondary: '$deepBlue',
-      error: '$deepRed',
-      notification: '$deepRed',
-      baseFont: '$black'
+      primary: '#38CC8E',
+      secondary: '#0F4C81',
+      error: '#D9072D',
+      notification: '#D9072D',
+      baseFont: '#140F0F'
     }
   },
   box: {

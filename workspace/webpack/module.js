@@ -1,3 +1,4 @@
+const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
@@ -15,6 +16,18 @@ const pug = {
 const vue = {
   test: /\.vue$/,
   loader: 'vue-loader'
+}
+
+const ejs = {
+  test: /\.ejs$/,
+  use: [
+    {
+      loader: 'vue-loader'
+    },
+    {
+      loader: path.resolve(__dirname, './loader.js')
+    }
+  ]
 }
 
 const babelOptions = {
@@ -71,5 +84,5 @@ const scss = {
 }
 
 module.exports = {
-  rules: [svg, pug, vue, js, scss]
+  rules: [svg, pug, vue, js, scss, ejs]
 }

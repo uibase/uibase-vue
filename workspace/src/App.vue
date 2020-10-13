@@ -4,7 +4,9 @@
   </base-box>
 </template>
 <script>
+import BaseButton from '../../src/vue/components/Button/button.ejs'
 export default {
+  components: { BaseButton },
   name: 'App'
 }
 </script>
