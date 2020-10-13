@@ -19,7 +19,7 @@
     "url": "git@github.com:uibase/uibase-vue.git"
   },
   "bin": {
-    "uibase": "./dist/scripts/main.js"
+    "uibase": "./bin/index.js"
   },
   "keywords": [
     "UI"
