@@ -6,10 +6,7 @@ import UiBasePlugin from '../plugins/webpack/UiBasePlugin'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const deepmerge = require('deepmerge')
 
-export default (
-  userStyleguideConfig = {},
-  configFilePath = '',
-) => {
+export default (userStyleguideConfig = {}, configFilePath = '') => {
   plugins.push(
     new UiBasePlugin({
       configPath: configFilePath

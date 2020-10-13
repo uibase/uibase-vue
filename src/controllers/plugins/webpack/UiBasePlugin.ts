@@ -23,7 +23,11 @@ export default class UiBasePlugin {
     this.initialize = false
   }
   apply(compiler: Compiler) {
-    const pathToProvide = path.resolve(__dirname, '../../../../.uiBase')
+    const pwd = process.env.PWD || ''
+    const pathToProvide = path.resolve(
+      pwd,
+      '/node_modules/@uibase/uibase-vue/.uiBase'
+    )
     const providerFactory = new ComponentProviderFactory(pathToProvide)
     const vueProvider = providerFactory.create('vue')
     console.log('create Vue Provider.', vueProvider)
