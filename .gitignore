@@ -1,6 +1,6 @@
 .idea
 dist
 bin
-uibase
 node_modules
 .uiBase
+uibase.config.js

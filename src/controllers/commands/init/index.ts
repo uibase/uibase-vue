@@ -2,7 +2,7 @@ import { Command } from 'commander'
 import ICommand from '../ICommand'
 import { resolve } from 'path'
 import * as fs from 'fs'
-import defaultConfig from './defaultConfig/index'
+import defaultConfig from '@util/defaultConfig/index'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')

@@ -6,6 +6,7 @@ test('css style manager', () => {
       color: 'red'
     },
     fontSize: 12,
+    fontWeight: 'bold',
     border: '1px solid #ccc',
     fontColor: 'black',
     height: 200,

@@ -5,6 +5,7 @@ module.exports = {
     '^@factory/(.*)$': '<rootDir>/src/factories/$1',
     '^@helper/(.*)$': '<rootDir>/src/helpers/$1',
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
+    '^@util/(.*)$': '<rootDir>/src/utils/$1',
     '^@src/(.*)$': '<rootDir>/src/$1'
   },
   moduleFileExtensions: ['js', 'vue', 'json', 'jsx', 'ts', 'tsx'],

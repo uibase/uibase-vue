@@ -1,12 +1,20 @@
 import { RequiredBackground } from '@uiConfig/common/Background'
-import { RequiredFontColor, RequiredFontSize } from '@uiConfig/common/Font'
+import {
+  FontWeight,
+  RequiredFontColor,
+  RequiredFontSize
+} from '@uiConfig/common/Font'
 import { Shadow } from '@uiConfig/common/Shadow'
 import { Radius } from '@uiConfig/common/Radius'
 import { RequiredHeight } from '@uiConfig/common/Height'
-import { RequiredWidth } from '@uiConfig/common/Width'
 import { Opacity } from '@uiConfig/common/Opacity'
+import { Border } from '@uiConfig/common/Border'
 
-type ButtonState = RequiredBackground & RequiredFontColor & Shadow
+type ButtonState = RequiredBackground &
+  RequiredFontColor &
+  FontWeight &
+  Shadow &
+  Border
 
 export type ButtonConditions = ButtonState & {
   hover: ButtonState & Opacity
@@ -29,10 +37,6 @@ export type ButtonSizes = {
   }
 }
 
-type Button = Radius &
-  ButtonColors &
-  ButtonSizes & {
-    bordered: RequiredWidth
-  }
+type Button = Radius & ButtonColors & ButtonSizes
 
 export default Button

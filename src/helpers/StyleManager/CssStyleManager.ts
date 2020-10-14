@@ -1,6 +1,10 @@
 import { BackgroundProperties } from '@uiConfig/common/Background'
 import { BorderProperties } from '@uiConfig/common/Border'
-import { FontColorProperties, FontSizeProperties } from '@uiConfig/common/Font'
+import {
+  FontColorProperties,
+  FontSizeProperties,
+  FontWeightProperties
+} from '@uiConfig/common/Font'
 import { HeightProperties } from '@uiConfig/common/Height'
 import { OpacityProperties } from '@uiConfig/common/Opacity'
 import { RadiusProperties } from '@uiConfig/common/Radius'
@@ -70,6 +74,10 @@ export default class CssStyleManager implements IStyleManager<string> {
     return `width: ${typeof config === 'number' ? `${config}px` : config};\n`
   }
 
+  fontWeight(config: FontWeightProperties): string {
+    return `font-weight: ${config};\n`
+  }
+
   generate(styleConfig: ConfigProperties): string {
     let result = ''
     Object.keys(styleConfig).forEach((key) => {
@@ -87,6 +95,10 @@ export default class CssStyleManager implements IStyleManager<string> {
             )
           case 'fontSize':
             return this.fontSize(styleConfig['fontSize'] as FontSizeProperties)
+          case 'fontWeight':
+            return this.fontWeight(
+              styleConfig['fontWeight'] as FontWeightProperties
+            )
           case 'height':
             return this.height(styleConfig['height'] as HeightProperties)
           case 'opacity':

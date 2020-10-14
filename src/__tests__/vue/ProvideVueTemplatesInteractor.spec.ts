@@ -7,56 +7,12 @@ import TemplateEjsRenderer from '@helper/TemplateRenderer/TemplateEjsRenderer'
 import CssStyleManager from '@helper/StyleManager/CssStyleManager'
 import ProvidedFsFileRepository from '@src/repositories/ProvidedFsFileRepository'
 import VueBoxComponent from '@src/vue/components/Box/VueBoxComponent'
+import defaultConfig from '@util/defaultConfig'
 
 it('provide test', () => {
   const ubConfig = new UBConfig({
-    global: {
-      colors: {
-        primary: 'red',
-        secondary: '#fff',
-        notification: 'rgba(0,0,0,0.4)',
-        error: '#001100',
-        baseFont: 'green'
-      }
-    },
-    box: {
-      styles: {
-        test: {
-          background: '#ccc'
-        }
-      },
-      radius: 12
-    },
-    button: {
-      colors: {
-        primary: {
-          fontColor: 'black',
-          background: 'white',
-          hover: {
-            fontColor: 'white',
-            background: 'black'
-          }
-        },
-        secondary: {
-          fontColor: 'blue',
-          background: 'yellow',
-          hover: {
-            fontColor: 'yellow',
-            background: 'blue'
-          }
-        }
-      },
-      sizes: {
-        medium: {
-          fontSize: 15,
-          default: true,
-          height: 24
-        }
-      },
-      bordered: {
-        width: 2
-      }
-    }
+    global: defaultConfig.global,
+    button: defaultConfig.button
   })
   const templateRenderer = new TemplateEjsRenderer(new CssStyleManager())
   const templateList: TemplateList = {

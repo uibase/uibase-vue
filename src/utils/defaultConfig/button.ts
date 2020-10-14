@@ -23,6 +23,16 @@ export default {
         fontColor: '$white',
         opacity: 0.8
       }
+    },
+    border: {
+      background: '$white',
+      fontColor: '$black',
+      shadow: '0px 1px 4px rgba(0, 0, 0, 0.2)',
+      border: '3px solid $black',
+      hover: {
+        background: '$black',
+        fontColor: '#white'
+      }
     }
   },
   sizes: {
@@ -39,9 +49,6 @@ export default {
       height: 40,
       fontSize: 16
     }
-  },
-  bordered: {
-    width: 2
   },
   radius: 3
 } as Button
