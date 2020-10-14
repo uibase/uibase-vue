@@ -47,7 +47,7 @@ export function componentNamePath(
   path: RenderedFilePath,
   extension: string
 ): [string, string] {
-  const regExp = new RegExp(`/([a-z0-9A-Z]*)\\.${extension}$`)
+  const regExp = new RegExp(`/([a-z0-9A-Z\-]*)\\.${extension}$`)
   const match = path.match(regExp)
   if (match) {
     return [match[1], path]

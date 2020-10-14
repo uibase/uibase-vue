@@ -2,11 +2,19 @@ import Box from '@uiConfig/Box'
 
 export default {
   radius: 5,
+  title: {
+    fontSize: 15,
+    fontWeight: 'normal',
+    margin: {
+      bottom: '16px'
+    }
+  },
   styles: {
     white: {
       background: '$white',
       shadow: '0px 1px 4px rgba(0,0,0,0.2)',
-      fontColor: '$baseFont'
+      fontColor: '$baseFont',
+      default: true
     },
     black: {
       background: '$black',

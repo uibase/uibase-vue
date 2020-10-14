@@ -15,8 +15,14 @@
     props: {
       type: {
         type: String,
-        default: 'gray',
-        validator: (value) => [undefined, 'gray', 'white'].indexOf(value)
+        <% const defaultType = Object.keys(styles).find(style => styles[style].default === true); %>
+        <% if (defaultType) { %>
+        default: '<%- defaultType %>',
+        <% } %>
+        validator: (value) => [
+          undefined,
+          <%- this.enumString(styles) %>
+        ].indexOf(value)
       },
       padding: {
         type: String,
@@ -36,16 +42,18 @@
 </script>
 <style lang="scss" module>
     .base_box {
-        border-radius: 4px;
-        &.gray {
-            background: #f8f8f8;
-        }
-        &.white {
-            background: #fff;
-            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-        }
-        .footer {
-            border-top: 1px solid #ccc;
-        }
+        <%- radius ? this.radius(radius) : '' %>
+        <%- Object.keys(styles).reduce((str, styleName) => {
+          return str + `
+            &.${styleName} {
+                ${this.style(styles[styleName])}
+                ${styles[styleName].footerDivide ? `
+                &.footer {
+                    ${this.border(styles[styleName].footerDivide.border)}
+                }
+                ` : ''}
+            }
+          `
+        }, '') %>
     }
 </style>

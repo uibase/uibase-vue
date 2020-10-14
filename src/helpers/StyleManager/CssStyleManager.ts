@@ -12,9 +12,10 @@ import { WidthProperties } from '@uiConfig/common/Width'
 import { ConfigProperties } from '@uiConfig/ConfigProperties'
 import IStyleManager from '@theme/helpers/IStyleManager'
 import { ShadowProperties } from '@uiConfig/common/Shadow'
+import { MarginProperties } from '@uiConfig/common/Margin'
 
 export default class CssStyleManager implements IStyleManager<string> {
-  private background(config: BackgroundProperties): string {
+  background(config: BackgroundProperties): string {
     if (typeof config === 'string') {
       return `background-color: ${config};\n`
     } else {
@@ -28,7 +29,21 @@ export default class CssStyleManager implements IStyleManager<string> {
     }
   }
 
-  private border(config: BorderProperties): string {
+  margin(config: MarginProperties): string {
+    if (typeof config === 'string') {
+      return `margin: ${config};\n`
+    } else {
+      return Object.keys(config).reduce(
+        (str, propName) =>
+          (str += `margin-${propName}: ${
+            config[propName as keyof BorderProperties]
+          };\n`),
+        ''
+      )
+    }
+  }
+
+  border(config: BorderProperties): string {
     if (typeof config === 'string') {
       return `border: ${config};\n`
     } else {
@@ -42,31 +57,31 @@ export default class CssStyleManager implements IStyleManager<string> {
     }
   }
 
-  private fontColor(config: FontColorProperties): string {
+  fontColor(config: FontColorProperties): string {
     return `color: ${config};\n`
   }
 
-  private fontSize(config: FontSizeProperties): string {
+  fontSize(config: FontSizeProperties): string {
     return `font-size: ${
       typeof config === 'number' ? `${config}px` : config
     };\n`
   }
 
-  private height(config: HeightProperties): string {
+  height(config: HeightProperties): string {
     return `height: ${typeof config === 'number' ? `${config}px` : config};\n`
   }
 
-  private opacity(config: OpacityProperties): string {
+  opacity(config: OpacityProperties): string {
     return `opacity: ${config};\n`
   }
 
-  private radius(config: RadiusProperties): string {
+  radius(config: RadiusProperties): string {
     return `border-radius: ${
       typeof config === 'number' ? `${config}px` : config
     };\n`
   }
 
-  private shadow(config: ShadowProperties): string {
+  shadow(config: ShadowProperties): string {
     return `box-shadow: ${config};\n`
   }
 
@@ -77,6 +92,7 @@ export default class CssStyleManager implements IStyleManager<string> {
   fontWeight(config: FontWeightProperties): string {
     return `font-weight: ${config};\n`
   }
+
 
   generate(styleConfig: ConfigProperties): string {
     let result = ''
@@ -109,6 +125,8 @@ export default class CssStyleManager implements IStyleManager<string> {
             return this.shadow(styleConfig.shadow as ShadowProperties)
           case 'width':
             return this.width(styleConfig.width as WidthProperties)
+          case 'margin':
+            return this.margin(styleConfig.margin as MarginProperties)
           default:
             return ''
           // throw `CSSStyleError:: property ${key} is not defined.`
