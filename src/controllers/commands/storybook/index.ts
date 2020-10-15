@@ -40,7 +40,7 @@ export class StorybookCommand implements ICommand {
         const provider = new StorybookProvider(
           pathToProvide,
           'vue',
-          new StorybookEjsRenderer('vue', '@uibase/uibase-vue'),
+          new StorybookEjsRenderer('vue', '@uibase/uibase-vue/.uiBase'),
           new ProvidedFsFileRepository()
         )
         provider.provide(config).then((paths) => {
