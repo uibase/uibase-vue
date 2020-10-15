@@ -15,4 +15,3 @@ export const listSvgFileNames = (dir: string): IconPaths => {
   })
   return files
 }
-

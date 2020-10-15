@@ -9,7 +9,7 @@ module.exports = {
   },
   mode: env,
   externals: [nodeExternals()],
-  devtool: 'source-map',
+  devtool: env === 'production' ? false : 'source-map',
   resolve: {
     extensions: ['.js', '.ts', '.ejs'],
     alias: {

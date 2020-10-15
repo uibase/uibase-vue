@@ -12,7 +12,8 @@ import defaultConfig from '@util/defaultConfig'
 it('provide test', () => {
   const ubConfig = new UBConfig({
     global: defaultConfig.global,
-    button: defaultConfig.button
+    button: defaultConfig.button,
+    box: defaultConfig.box
   })
   const templateRenderer = new TemplateEjsRenderer(new CssStyleManager())
   const templateList: TemplateList = {

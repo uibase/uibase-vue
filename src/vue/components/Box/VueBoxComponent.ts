@@ -42,7 +42,7 @@ export default class VueButtonComponent implements IBoxComponent {
         }
       ]
     } else {
-      throw `templateCreationError: button config has not be found.`
+      throw `templateCreationError: box config has not be found.`
     }
   }
 }

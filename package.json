@@ -11,7 +11,7 @@
     "command:build": "webpack --config build/webpack.command.config.js",
     "plugin:build": "webpack --config build/webpack.plugin.config.js",
     "dev": "webpack-dev-server --config workspace/webpack/webpack.workspace.config.js --hot --progress -d",
-    "build": "npm run command:build && npm run plugin:build && npm run ccss:build",
+    "build": "NODE_ENV=production npm run command:build && NODE_ENV=production npm run plugin:build && npm run ccss:build",
     "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss lib/css/base.ui.common.css"
   },
   "repository": {
