@@ -7,6 +7,10 @@ module.exports = merge(controllerBundle, {
     UiBasePlugin: path.resolve(
       __dirname,
       '../src/controllers/plugins/webpack/UiBasePlugin.ts'
+    ),
+    storybook: path.resolve(
+      __dirname,
+      '../src/controllers/plugins/storybook/index.ts'
     )
   },
   output: {
