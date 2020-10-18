@@ -2,16 +2,20 @@ import {
   WebpackOptions,
   WebpackPluginInstance
 } from 'webpack/declarations/WebpackOptions'
-import UiBasePlugin from '@src/controllers/plugins/webpack/UiBasePlugin'
+import { useUiBasePlugin } from '@src/controllers/plugins/webpack/index'
 
 export function presetUiBasePlugin(
   config: WebpackOptions,
   configPath: string
 ): WebpackOptions {
-  const plugin: WebpackPluginInstance = new UiBasePlugin({
+  const plugins: WebpackPluginInstance[] = useUiBasePlugin(
+    'vue',
     configPath
-  }) as WebpackPluginInstance
-  ;(config.plugins as WebpackPluginInstance[]).push(plugin)
+  ) as WebpackPluginInstance[]
+
+  plugins.forEach((plugin) =>
+    (config.plugins as WebpackPluginInstance[]).push(plugin)
+  )
   return config
 }
 

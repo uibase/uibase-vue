@@ -2,16 +2,17 @@ import resolve from './resolve'
 import modules from './module'
 import plugins from './plugins'
 import merge from 'webpack-merge'
-import UiBasePlugin from '../plugins/webpack/UiBasePlugin'
+// import UiBaseTemplatePlugin from '../plugins/webpack/UiBasePlugin'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const deepmerge = require('deepmerge')
 
 export default (userStyleguideConfig = {}, configFilePath = '') => {
-  plugins.push(
-    new UiBasePlugin({
-      configPath: configFilePath
-    })
-  )
+  plugins
+    .push
+    // new UiBaseTemplatePlugin(
+    //   configPath: configFilePath
+    // })
+    ()
   const webpackConfig = {
     resolve,
     module: modules,

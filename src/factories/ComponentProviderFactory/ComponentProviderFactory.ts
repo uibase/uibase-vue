@@ -4,6 +4,7 @@ import IComponentProviderConstructor from './IComponentProviderConstructor'
 import VueComponentProvider from './vue/VueComponentProvider'
 import TemplateFactory from '@factory/TemplateFactory/TemplateFactory'
 import ProvidedFsFileRepository from '@src/repositories/ProvidedFsFileRepository'
+import { ComponentType } from '@theme/types/ComponentType'
 
 export default class ComponentProviderFactory
   implements IComponentProviderFactory<IComponentProvider> {
@@ -16,7 +17,7 @@ export default class ComponentProviderFactory
   constructor(pathToProvide: string) {
     this.pathToProvide = pathToProvide
   }
-  create(name: 'vue' | 'react'): IComponentProvider {
+  create(name: ComponentType): IComponentProvider {
     switch (name) {
       case 'vue':
         return this.createProvider(VueComponentProvider)

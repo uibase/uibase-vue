@@ -24,8 +24,10 @@ export default class StorybookEjsRenderer implements IStorybookRenderer {
       string
     >).then((str) => {
       const strArray = str.split('\n')
-      strArray.shift()
-      strArray.pop()
+      if (strArray[0].match(/<script/)) {
+        strArray.shift()
+        strArray.pop()
+      }
       return strArray.join('\n')
     })
   }

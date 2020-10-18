@@ -8,8 +8,9 @@ import IStorybookRenderer from '@src/controllers/storybook/interfaces/IStorybook
 import { ComponentFileType } from '@theme/types/ComponentFileType'
 import templateProvideRepositoryHandler from '@helper/templateProvideRepositoryHandler'
 import IProvidedFileRepository from '@src/repositories/IProvidedFileRepository'
+import IComponentProvider from '@factory/ComponentProviderFactory/IComponentProvider'
 
-export default class StorybookProvider {
+export default class StorybookProvider implements IComponentProvider {
   private readonly type: StoryType
   private readonly pathToProvide: string
   private readonly renderer: IStorybookRenderer

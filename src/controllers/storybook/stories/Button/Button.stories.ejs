@@ -1,15 +1,15 @@
 <script>
-  import Button from '<%- this.path %>/Button';
+  import BaseButton from '<%- this.path %>/Button';
 
   export default {
-    title: 'Base UI/Button',
-    component: Button,
+    title: 'Base UI/BaseButton',
+    component: BaseButton,
   };
 
   const Template = (args, { argTypes }) => ({
     <% if (this.type === 'vue') { %>
     props: Object.keys(argTypes),
-    components: { Button },
+    components: { BaseButton },
     template: '<base-button type="primary">{{label}}</base-button>',
     <% } %>
   });
@@ -17,7 +17,6 @@
   export const Primary = Template.bind({});
 
   Primary.args = {
-    primary: true,
     label: 'Primary'
   }
 </script>

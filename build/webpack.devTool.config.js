@@ -7,6 +7,10 @@ module.exports = merge(webpackControllerBundle, {
     vueDevTools: path.resolve(
       __dirname,
       '../src/controllers/devTool/vue/vueDevTools.ts'
+    ),
+    storybookDevTools: path.resolve(
+      __dirname,
+      '../src/controllers/devTool/storybook/storybookDevTools.ts'
     )
   },
   node: {

@@ -7,12 +7,15 @@
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "devTool:build": "webpack --config build/webpack.devTool.config.js",
+    "devTool:dev": "webpack --config build/webpack.devTool.config.js -w",
     "command:dev": "webpack --config build/webpack.command.config.js -w",
     "command:build": "webpack --config build/webpack.command.config.js",
     "plugin:build": "webpack --config build/webpack.plugin.config.js",
     "dev": "webpack-dev-server --config workspace/webpack/webpack.workspace.config.js --hot --progress -d",
     "build": "NODE_ENV=production npm run command:build && NODE_ENV=production npm run plugin:build && npm run ccss:build",
-    "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss lib/css/base.ui.common.css"
+    "ccss:build": "node-sass --importer src/assets/css/importer.js src/assets/css/base.scss lib/css/base.ui.common.css",
+    "storybook": "start-storybook -c ./workspace/storybook/.storybook/ -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -31,6 +34,10 @@
   "author": "junzo matsunoo <no.diggi.t@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/vue": "^6.0.26",
     "@types/ejs": "^3.0.4",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.10.1",
@@ -49,6 +56,7 @@
     "node-sass-css-importer": "0.0.3",
     "prettier": "^1.19.1",
     "raw-loader": "^4.0.2",
+    "react-is": "^16.13.1",
     "stylelint": "^13.7.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-prettier": "^1.1.2",

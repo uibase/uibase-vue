@@ -1,6 +1,6 @@
 import IButtonStory from 'src/controllers/storybook/interfaces/components/IButtonStory'
 import IStorybookRenderer from 'src/controllers/storybook/interfaces/IStorybookRenderer'
-import buttonStoryTemplate from './Button.ejs'
+import buttonStoryTemplate from './Button.stories.ejs'
 import UBConfig from '@theme/config/UBConfig'
 import { TemplateComponent } from '@theme/types/TemplateComponent'
 import { isConfig } from '@uiConfig/isConfig'

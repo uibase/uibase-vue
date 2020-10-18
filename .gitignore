@@ -1,6 +1,8 @@
 .idea
 dist
 bin
+lib
 node_modules
 .uiBase
 uibase.config.js
+workspace/storybook/uiBase

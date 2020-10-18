@@ -1,5 +1,7 @@
+import { ComponentType } from '@theme/types/ComponentType'
+
 interface IComponentProviderFactory<T> {
-  create(name: 'vue' | 'react'): T
+  create(name: ComponentType): T
 }
 
 export default IComponentProviderFactory

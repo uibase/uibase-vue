@@ -4,9 +4,9 @@ const { merge } = require('webpack-merge')
 
 module.exports = merge(controllerBundle, {
   entry: {
-    UiBasePlugin: path.resolve(
+    webpack: path.resolve(
       __dirname,
-      '../src/controllers/plugins/webpack/UiBasePlugin.ts'
+      '../src/controllers/plugins/webpack/index.ts'
     ),
     storybook: path.resolve(
       __dirname,
