@@ -19,3 +19,5 @@ export function useUiBasePlugin(
     })
   ]
 }
+
+export default useUiBasePlugin
