@@ -1,3 +1,4 @@
+import path from 'path'
 import TemplateEjsRenderer from '@helper/TemplateRenderer/TemplateEjsRenderer'
 import CssStyleManager from '@helper/StyleManager/CssStyleManager'
 import { ComponentTypeName } from '@theme/types/ComponentTypeName'
@@ -22,6 +23,12 @@ export default {
     templateStr: string,
     userConfig: UserConfig
   ): Promise<string> => {
+    const pwd = process.env.PWD || ''
+    if (userConfig.icon) {
+      if (typeof userConfig.icon.paths === 'string') {
+        userConfig.icon.paths = path.resolve(pwd, userConfig.icon.paths)
+      }
+    }
     const config = new ComponentObject(userConfig)
     const name = targetName !== 'global' ? targetName : ''
     if (name) {

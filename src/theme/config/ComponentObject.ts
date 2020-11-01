@@ -68,10 +68,10 @@ export default class ComponentObject {
     }
   }
 
-  icons(): IconComponentObject | undefined {
-    if (this.userConfig.icons) {
-      const icons = { ...this.userConfig.icons }
-      if (icons.paths instanceof String) {
+  icon(): IconComponentObject | undefined {
+    if (this.userConfig.icon) {
+      const icons = { ...this.userConfig.icon }
+      if (typeof icons.paths === 'string') {
         icons.paths = listSvgFileNames(icons.paths as string)
       }
       if (icons.defaultColors) {

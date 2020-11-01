@@ -1,6 +1,7 @@
 <template>
   <base-box type="white" padding="12px">
     <base-box-title>This is Title.</base-box-title>
+    <base-icon name="bell" color="deepRed" />
     <div>
       <base-button>button</base-button>
     </div>
@@ -19,8 +20,9 @@
 import BaseButton from '../../src/vue/components/Button/button.ejs'
 import BaseBox from '../../src/vue/components/Box/box.ejs'
 import BaseBoxTitle from '../../src/vue/components/Box/box-title.ejs'
+import BaseIcon from '../../src/vue/components/Icon/icon.ejs'
 export default {
-  components: { BaseButton, BaseBox, BaseBoxTitle },
+  components: { BaseIcon, BaseButton, BaseBox, BaseBoxTitle },
   name: 'App'
 }
 </script>

@@ -1,6 +1,12 @@
 <script>
+<% for (key in paths) { %>
+import <%= key %> from '<%= paths[key] %>'
+<% } %>
   export default {
     name: 'BaseIcon',
+    components: {
+      <%= Object.keys(paths).join(',') %>
+    },
     props: {
       size: {
         type: String,
@@ -8,7 +14,10 @@
       },
       color: {
         type: String,
-        default: ''
+        default: 'primary',
+        validator: (value) => [
+          <%- this.enumString(colors)  %>
+        ].includes(value)
       },
       name: {
         type: String,
@@ -42,4 +51,9 @@
   }
 </script>
 <style lang="scss" module>
+<% for(color in colors) { %>
+.<%= color %> {
+    fill: <%- colors[color] %>;
+}
+<% } %>
 </style>

@@ -8,7 +8,7 @@ import { IconComponentObject } from '@theme/types/components/Icon'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
 
-class VueIconComponent implements IIconComponent {
+export default class VueIconComponent implements IIconComponent {
   private componentObject: ComponentObject
   private templateRenderer: ITemplateRenderer
 
@@ -20,10 +20,10 @@ class VueIconComponent implements IIconComponent {
     this.templateRenderer = templateRenderer
   }
   async generate(): Promise<TemplateComponent[]> {
-    if (this.componentObject.icons()) {
+    if (this.componentObject.icon()) {
       const icons = await this.templateRenderer.render(
         IconTemplate,
-        this.componentObject.icons() as IconComponentObject
+        this.componentObject.icon() as IconComponentObject
       )
       return [
         {

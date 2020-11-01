@@ -13,7 +13,7 @@ export interface UserConfig {
   container?: ContainerConfig
   header?: HeaderConfig
   sidebar?: SidebarConfig
-  icons?: IconConfig
+  icon?: IconConfig
 }
 
 export default UserConfig
