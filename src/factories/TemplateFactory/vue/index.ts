@@ -1,29 +1,29 @@
 import { TemplateList } from '@theme/types/TemplateList'
 import VueButtonComponent from '@src/vue/components/Button/VueButtonComponent'
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
-import UBConfig from '@theme/config/UBConfig'
 import VueBoxComponent from '@src/vue/components/Box/VueBoxComponent'
+import ComponentObject from '@theme/config/ComponentObject'
 
 export default function(
-  themeConfig: UBConfig,
+  componentObject: ComponentObject,
   templateRenderer: ITemplateRenderer
 ): TemplateList {
   try {
     const templateList = {} as TemplateList
-    const button = themeConfig.button()
-    const box = themeConfig.box()
-    // const sidebar = themeConfig.sidebar()
-    // const header = themeConfig.header()
-    // const container = themeConfig.container()
-    // const icons = themeConfig.icons()
+    const button = componentObject.button()
+    const box = componentObject.box()
+    // const sidebar = componentObject.sidebar()
+    // const header = componentObject.header()
+    // const container = componentObject.container()
+    // const icons = componentObject.icons()
 
     if (button)
       templateList.button = new VueButtonComponent(
-        themeConfig,
+        componentObject,
         templateRenderer
       )
     if (box)
-      templateList.box = new VueBoxComponent(themeConfig, templateRenderer)
+      templateList.box = new VueBoxComponent(componentObject, templateRenderer)
     return templateList as TemplateList
   } catch (e) {
     throw e

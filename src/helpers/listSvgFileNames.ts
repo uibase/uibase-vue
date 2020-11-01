@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import { IconPaths } from '@uiConfig/Icon'
+import { IconPaths } from '@theme/types/components/Icon'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const camelCase = require('lodash.camelcase')
 

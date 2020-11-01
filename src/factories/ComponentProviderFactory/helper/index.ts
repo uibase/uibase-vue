@@ -1,15 +1,15 @@
-import ThemeConfig from '@uiConfig/ThemeConfig'
 import { DiffResult } from '@theme/types/DiffResult'
-import Global from '@uiConfig/Global'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
+import UserConfig from '@theme/types/UserConfig'
+import Global from '@theme/types/components/Global'
 
 export function findConfigDiff(
-  newConfig: ThemeConfig,
-  prevConfig: ThemeConfig & { global?: Global }
+  newConfig: UserConfig,
+  prevConfig: UserConfig & { global?: Global }
 ): DiffResult {
   let result = [{}, {}] as DiffResult
   Object.keys(newConfig).forEach((name) => {
-    const configName = name as keyof ThemeConfig
+    const configName = name as keyof UserConfig
     if (newConfig[configName] && !prevConfig[configName]) {
       result = [
         { ...result[0], [configName]: newConfig[configName] },
@@ -32,7 +32,7 @@ export function findConfigDiff(
     }
   })
   Object.keys(prevConfig).forEach((name) => {
-    const configName = name as keyof ThemeConfig
+    const configName = name as keyof UserConfig
     if (!newConfig[configName] && prevConfig[configName]) {
       result = [
         { ...result[0] },

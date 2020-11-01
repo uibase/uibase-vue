@@ -1,4 +1,4 @@
-import Box from '@uiConfig/Box'
+import BoxConfig from '@theme/types/components/Box'
 
 export default {
   radius: 5,
@@ -24,4 +24,4 @@ export default {
       }
     }
   }
-} as Box
+} as BoxConfig

@@ -1,18 +1,18 @@
-import { BackgroundProperties } from '@uiConfig/common/Background'
-import { BorderProperties } from '@uiConfig/common/Border'
+import { BackgroundProperties } from '@theme/types/commonProps/Background'
+import { BorderProperties } from '@theme/types/commonProps/Border'
 import {
   FontColorProperties,
   FontSizeProperties,
   FontWeightProperties
-} from '@uiConfig/common/Font'
-import { HeightProperties } from '@uiConfig/common/Height'
-import { OpacityProperties } from '@uiConfig/common/Opacity'
-import { RadiusProperties } from '@uiConfig/common/Radius'
-import { WidthProperties } from '@uiConfig/common/Width'
-import { ConfigProperties } from '@uiConfig/ConfigProperties'
+} from '@theme/types/commonProps/Font'
+import { HeightProperties } from '@theme/types/commonProps/Height'
+import { OpacityProperties } from '@theme/types/commonProps/Opacity'
+import { RadiusProperties } from '@theme/types/commonProps/Radius'
+import { WidthProperties } from '@theme/types/commonProps/Width'
+import { ConfigProperties } from '@theme/types/ConfigProperties'
 import IStyleManager from '@theme/helpers/IStyleManager'
-import { ShadowProperties } from '@uiConfig/common/Shadow'
-import { MarginProperties } from '@uiConfig/common/Margin'
+import { ShadowProperties } from '@theme/types/commonProps/Shadow'
+import { MarginProperties } from '@theme/types/commonProps/Margin'
 
 export default class CssStyleManager implements IStyleManager<string> {
   background(config: BackgroundProperties): string {

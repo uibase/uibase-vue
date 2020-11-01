@@ -1,6 +1,7 @@
 module.exports = {
   roots: ['<rootDir>/src'],
   moduleNameMapper: {
+    '^@types/(.*)$': '<rootDir>/src/theme/types/$1',
     '^@uiConfig/(.*)$': '<rootDir>/src/theme/types/config/$1',
     '^@factory/(.*)$': '<rootDir>/src/factories/$1',
     '^@helper/(.*)$': '<rootDir>/src/helpers/$1',

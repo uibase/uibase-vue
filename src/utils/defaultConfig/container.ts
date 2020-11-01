@@ -1,4 +1,4 @@
-import Container from '@uiConfig/Container'
+import ContainerConfig from '@theme/types/components/Container'
 
 export default {
   header: {
@@ -8,4 +8,4 @@ export default {
   footer: {
     background: '#333'
   }
-} as Container
+} as ContainerConfig

@@ -1,17 +1,17 @@
 import IButtonStory from 'src/controllers/storybook/interfaces/components/IButtonStory'
 import IStorybookRenderer from 'src/controllers/storybook/interfaces/IStorybookRenderer'
 import buttonStoryTemplate from './Button.stories.ejs'
-import UBConfig from '@theme/config/UBConfig'
 import { TemplateComponent } from '@theme/types/TemplateComponent'
-import { isConfig } from '@uiConfig/isConfig'
 import { ComponentFileType } from '@theme/types/ComponentFileType'
+import ComponentObject from '@theme/config/ComponentObject'
+import { IsComponentObject } from '@theme/types/IsComponentObject'
 
 export default class ButtonStory implements IButtonStory {
-  private config: UBConfig
+  private config: ComponentObject
   private renderer: IStorybookRenderer
   private type: ComponentFileType
   constructor(
-    config: UBConfig,
+    config: ComponentObject,
     renderer: IStorybookRenderer,
     type: ComponentFileType
   ) {
@@ -23,7 +23,7 @@ export default class ButtonStory implements IButtonStory {
     if (this.config.button()) {
       const str = await this.renderer.render(
         buttonStoryTemplate,
-        this.config.button() as isConfig
+        this.config.button() as IsComponentObject
       )
       return [
         {

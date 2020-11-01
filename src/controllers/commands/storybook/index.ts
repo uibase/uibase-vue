@@ -1,11 +1,11 @@
 import { Command } from 'commander'
 import ICommand from '../ICommand'
 import path from 'path'
-import ThemeConfig from '@uiConfig/ThemeConfig'
 import fs from 'fs'
 import StorybookProvider from '@src/controllers/storybook/StorybookProvider'
 import StorybookEjsRenderer from '@src/controllers/storybook/StorybookEjsRenderer'
 import ProvidedFsFileRepository from '@src/repositories/ProvidedFsFileRepository'
+import UserConfig from '@theme/types/UserConfig'
 
 export class StorybookCommand implements ICommand {
   private readonly workingDir: string
@@ -35,7 +35,7 @@ export class StorybookCommand implements ICommand {
         const configContent = fs.readFileSync(configPath, {
           encoding: 'utf-8'
         })
-        const config = eval(configContent) as ThemeConfig
+        const config = eval(configContent) as UserConfig
         const pathToProvide = path.join(pwd, options.dist)
         const provider = new StorybookProvider(
           pathToProvide,

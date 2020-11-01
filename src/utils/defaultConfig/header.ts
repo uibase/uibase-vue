@@ -1,4 +1,4 @@
-import Header from '@uiConfig/Header'
+import HeaderConfig from '@theme/types/components/Header'
 
 export default {
   background: '$white',
@@ -7,4 +7,4 @@ export default {
   },
   fontColor: '$black',
   height: 50
-} as Header
+} as HeaderConfig

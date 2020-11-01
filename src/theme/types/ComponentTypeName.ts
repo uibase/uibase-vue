@@ -1,3 +1,3 @@
-import ThemeConfig from '@uiConfig/ThemeConfig'
+import UserConfig from '@theme/types/UserConfig'
 
-export type ComponentTypeName = keyof ThemeConfig
+export type ComponentTypeName = keyof UserConfig

@@ -1,33 +1,35 @@
-import path from 'path'
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import { TemplateComponent } from '@theme/types/TemplateComponent'
-import UBConfig from '@theme/config/UBConfig'
-import Box from '@uiConfig/Box'
+import ComponentObject from '@theme/config/ComponentObject'
 import IBoxComponent from '@theme/components/IBoxComponent'
 import boxTemplate from './box.ejs'
 import boxTitleTemplate from './box.ejs'
+import { BoxComponentObject } from '@theme/types/components/Box'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
 
 export default class VueButtonComponent implements IBoxComponent {
-  private readonly themeConfig: UBConfig
+  private readonly componentObject: ComponentObject
   private templateRenderer: ITemplateRenderer
 
-  constructor(themeConfig: UBConfig, templateRenderer: ITemplateRenderer) {
-    this.themeConfig = themeConfig
+  constructor(
+    componentObject: ComponentObject,
+    templateRenderer: ITemplateRenderer
+  ) {
+    this.componentObject = componentObject
     this.templateRenderer = templateRenderer
   }
 
   async generate(): Promise<TemplateComponent[]> {
-    if (this.themeConfig.box()) {
+    if (this.componentObject.box()) {
       const box = await this.templateRenderer.render(
         boxTemplate,
-        this.themeConfig.box() as Box
+        this.componentObject.box() as BoxComponentObject
       )
       const boxTitle = await this.templateRenderer.render(
         boxTitleTemplate,
-        this.themeConfig.box() as Box
+        this.componentObject.box() as BoxComponentObject
       )
       return [
         {

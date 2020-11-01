@@ -1,4 +1,4 @@
-import Global from '@uiConfig/Global'
+import Global from '@theme/types/components/Global'
 
 export default {
   colors: {

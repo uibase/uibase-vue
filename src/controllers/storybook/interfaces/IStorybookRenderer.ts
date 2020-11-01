@@ -1,5 +1,5 @@
-import { isConfig } from '@uiConfig/isConfig'
+import { IsComponentObject } from '@theme/types/IsComponentObject'
 
 export default interface IStorybookRenderer {
-  render(templateString: string, config: isConfig): Promise<string>
+  render(templateString: string, config: IsComponentObject): Promise<string>
 }

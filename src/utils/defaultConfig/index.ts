@@ -4,7 +4,7 @@ import button from './button'
 import container from './container'
 import header from './header'
 import sidebar from './sidebar'
-import ThemeConfig from '@uiConfig/ThemeConfig'
+import UserConfig from '@theme/types/UserConfig'
 
 export default {
   global,
@@ -13,4 +13,4 @@ export default {
   container,
   header,
   sidebar
-} as ThemeConfig
+} as UserConfig

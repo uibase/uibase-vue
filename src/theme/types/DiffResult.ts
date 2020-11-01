@@ -1,5 +1,5 @@
-import ThemeConfig from '@uiConfig/ThemeConfig'
+import UserConfig from '@theme/types/UserConfig'
 
-type UpdateAndNew = ThemeConfig
-type Deleted = ThemeConfig
+type UpdateAndNew = UserConfig
+type Deleted = UserConfig
 export type DiffResult = [UpdateAndNew, Deleted]

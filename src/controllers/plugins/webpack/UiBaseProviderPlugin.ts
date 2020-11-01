@@ -2,8 +2,8 @@ import webpack from 'webpack'
 import Compilation = webpack.compilation.Compilation
 import IComponentProvider from 'src/factories/ComponentProviderFactory/IComponentProvider'
 import fs from 'fs'
-import ThemeConfig from 'src/theme/types/config/ThemeConfig'
 import { RenderedFilePath } from 'src/theme/types/RenderedFilePath'
+import UserConfig from '@theme/types/UserConfig'
 
 export type UiBaseProviderOptionCriteria = {
   configPath: string
@@ -40,7 +40,7 @@ export default class UiBaseProviderPlugin {
     const configContent = fs.readFileSync(this.configPath, {
       encoding: 'utf-8'
     })
-    const config = eval(configContent) as ThemeConfig
+    const config = eval(configContent) as UserConfig
     provider.provide(config).then((paths: RenderedFilePath[]) => {
       console.log('Component Created', paths)
       paths.forEach((path) => compilation.fileDependencies.add(path))

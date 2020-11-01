@@ -1,20 +1,20 @@
-import { ConfigProperties } from '@uiConfig/ConfigProperties'
-import { isConfig } from '@uiConfig/isConfig'
+import { ConfigProperties } from '@theme/types/ConfigProperties'
 import ejs from 'ejs'
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import IStyleManager from '@theme/helpers/IStyleManager'
-import { BackgroundProperties } from '@uiConfig/common/Background'
-import { ShadowProperties } from '@uiConfig/common/Shadow'
+import { BackgroundProperties } from '@theme/types/commonProps/Background'
+import { ShadowProperties } from '@theme/types/commonProps/Shadow'
 import {
   FontColorProperties,
   FontSizeProperties,
   FontWeightProperties
-} from '@uiConfig/common/Font'
-import { OpacityProperties } from '@uiConfig/common/Opacity'
-import { WidthProperties } from '@uiConfig/common/Width'
-import { HeightProperties } from '@uiConfig/common/Height'
-import { BorderProperties } from '@uiConfig/common/Border'
-import { RadiusProperties } from '@uiConfig/common/Radius'
+} from '@theme/types/commonProps/Font'
+import { OpacityProperties } from '@theme/types/commonProps/Opacity'
+import { WidthProperties } from '@theme/types/commonProps/Width'
+import { HeightProperties } from '@theme/types/commonProps/Height'
+import { BorderProperties } from '@theme/types/commonProps/Border'
+import { RadiusProperties } from '@theme/types/commonProps/Radius'
+import { IsComponentObject } from '@theme/types/IsComponentObject'
 
 export default class TemplateEjsRenderer implements ITemplateRenderer {
   private readonly options: {
@@ -65,7 +65,7 @@ export default class TemplateEjsRenderer implements ITemplateRenderer {
     }
   }
 
-  render(templateFilePath: string, config: isConfig): Promise<string> {
+  render(templateFilePath: string, config: IsComponentObject): Promise<string> {
     return ejs.render(templateFilePath, config, this.options) as Promise<string>
   }
 }

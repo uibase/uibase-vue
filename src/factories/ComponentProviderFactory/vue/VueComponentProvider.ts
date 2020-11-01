@@ -1,19 +1,19 @@
 import IComponentProvider from '../IComponentProvider'
-import ThemeConfig from '@uiConfig/ThemeConfig'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
 import { findConfigDiff } from '@factory/ComponentProviderFactory/helper/index'
 import IProvidedFileRepository from '@src/repositories/IProvidedFileRepository'
 import { TemplateList } from '@theme/types/TemplateList'
 import ITemplateFactory from '@factory/TemplateFactory/ITemplateFactory'
-import UBConfig from '@theme/config/UBConfig'
 import ProvideVueTemplatesInteractor from '@src/vue/ProvideVueTemplatesInteractor'
 import { RenderVuePluginImporter } from '@factory/ComponentProviderFactory/helper/RenderVuePluginImporter'
 import pluginImportTemplate from './index.js.ejs'
 import templateProvideRepositoryHandler from '@helper/templateProvideRepositoryHandler'
+import UserConfig from '@theme/types/UserConfig'
+import ComponentObject from '@theme/config/ComponentObject'
 
 export default class VueComponentProvider implements IComponentProvider {
   private readonly pathToProvide: string
-  private previousConfig: ThemeConfig
+  private previousConfig: UserConfig
   private templateFactory: ITemplateFactory
   private renderedPaths: RenderedFilePath[]
   private readonly repository: IProvidedFileRepository
@@ -26,26 +26,26 @@ export default class VueComponentProvider implements IComponentProvider {
     this.pathToProvide = pathToProvide
     this.templateFactory = templateFactory
     this.repository = repository
-    this.previousConfig = {} as ThemeConfig
+    this.previousConfig = {} as UserConfig
     this.renderedPaths = []
   }
 
-  async provide(themeConfig: ThemeConfig): Promise<RenderedFilePath[]> {
+  async provide(userConfig: UserConfig): Promise<RenderedFilePath[]> {
     const [newComponents, deletedComponents] = findConfigDiff(
-      themeConfig,
+      userConfig,
       this.previousConfig
     )
 
     // take all components if set global
     const targetComponents = Object.keys(newComponents).includes('global')
-      ? themeConfig
+      ? userConfig
       : newComponents
     const changedVueTemplateList = this.templateFactory.generate(
-      new UBConfig({ ...targetComponents, global: themeConfig.global }),
+      new ComponentObject({ ...targetComponents, global: userConfig.global }),
       'vue'
     )
     const deletedVueTemplateList = this.templateFactory.generate(
-      new UBConfig({ ...deletedComponents, global: themeConfig.global }),
+      new ComponentObject({ ...deletedComponents, global: userConfig.global }),
       'vue'
     )
 
@@ -67,7 +67,7 @@ export default class VueComponentProvider implements IComponentProvider {
     console.log(this.renderedPaths)
     await this.renderPluginImporter(this.renderedPaths)
 
-    this.previousConfig = { ...themeConfig }
+    this.previousConfig = { ...userConfig }
 
     return this.renderedPaths
   }

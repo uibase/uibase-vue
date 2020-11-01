@@ -1,4 +1,4 @@
-import Sidebar from '@uiConfig/Sidebar'
+import SidebarConfig from '@theme/types/components/Sidebar'
 
 export default {
   active: {
@@ -9,4 +9,4 @@ export default {
   fontColor: '$white',
   menuHeader: { background: '$black' },
   width: 200
-} as Sidebar
+} as SidebarConfig

@@ -1,17 +1,17 @@
-import { ConfigProperties } from '@uiConfig/ConfigProperties'
-import { BackgroundProperties } from '@uiConfig/common/Background'
-import { BorderProperties } from '@uiConfig/common/Border'
+import { ConfigProperties } from '@theme/types/ConfigProperties'
+import { BackgroundProperties } from '@theme/types/commonProps/Background'
+import { BorderProperties } from '@theme/types/commonProps/Border'
 import {
   FontColorProperties,
   FontSizeProperties,
   FontWeightProperties
-} from '@uiConfig/common/Font'
-import { HeightProperties } from '@uiConfig/common/Height'
-import { WidthProperties } from '@uiConfig/common/Width'
-import { RadiusProperties } from '@uiConfig/common/Radius'
-import { OpacityProperties } from '@uiConfig/common/Opacity'
-import { ShadowProperties } from '@uiConfig/common/Shadow'
-import { MarginProperties } from '@uiConfig/common/Margin'
+} from '@theme/types/commonProps/Font'
+import { HeightProperties } from '@theme/types/commonProps/Height'
+import { WidthProperties } from '@theme/types/commonProps/Width'
+import { RadiusProperties } from '@theme/types/commonProps/Radius'
+import { OpacityProperties } from '@theme/types/commonProps/Opacity'
+import { ShadowProperties } from '@theme/types/commonProps/Shadow'
+import { MarginProperties } from '@theme/types/commonProps/Margin'
 
 export default interface IStyleManager<T> {
   background(config: BackgroundProperties): T

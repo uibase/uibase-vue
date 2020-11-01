@@ -1,26 +1,32 @@
 import IButtonComponent from '@theme/components/IButtonComponent'
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import { TemplateComponent } from '@theme/types/TemplateComponent'
-import UBConfig from '@theme/config/UBConfig'
-import Button from '@uiConfig/Button'
+import ComponentObjects from '@theme/config/ComponentObject'
 import buttonTemplate from './button.ejs'
+import { ButtonComponentObject } from '@theme/types/components/Button'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
 
 export default class VueButtonComponent implements IButtonComponent {
-  private readonly themeConfig: UBConfig
+  private readonly componentObjects: ComponentObjects
   private templateRenderer: ITemplateRenderer
 
-  constructor(themeConfig: UBConfig, templateRenderer: ITemplateRenderer) {
-    this.themeConfig = themeConfig
+  constructor(
+    componentObjects: ComponentObjects,
+    templateRenderer: ITemplateRenderer
+  ) {
+    this.componentObjects = componentObjects
     this.templateRenderer = templateRenderer
   }
 
   generate(): Promise<TemplateComponent[]> {
-    if (this.themeConfig.button()) {
+    if (this.componentObjects.button()) {
       return this.templateRenderer
-        .render(buttonTemplate, this.themeConfig.button() as Button)
+        .render(
+          buttonTemplate,
+          this.componentObjects.button() as ButtonComponentObject
+        )
         .then((str) => {
           return [
             {

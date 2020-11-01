@@ -4,10 +4,10 @@ import UiBaseTemplateProviderPlugin from '@src/controllers/plugins/webpack/UiBas
 import UiBaseStorybookProviderPlugin from '@src/controllers/plugins/webpack/UiBaseStorybookProviderPlugin'
 import { componentNamePath } from '@factory/ComponentProviderFactory/helper'
 import { ComponentTypeName } from '@theme/types/ComponentTypeName'
-import ThemeConfig from '@uiConfig/ThemeConfig'
-import UBConfig from '@theme/config/UBConfig'
-import { isConfig } from '@uiConfig/isConfig'
 import StorybookEjsRenderer from '@src/controllers/storybook/StorybookEjsRenderer'
+import UserConfig from '@theme/types/UserConfig'
+import ComponentObject from '@theme/config/ComponentObject'
+import { IsComponentObject } from '@theme/types/IsComponentObject'
 
 export default {
   getStoryNameFromPath: (path: string): string => {
@@ -50,17 +50,19 @@ export default {
   storyTemplateRenderer: (
     targetName: ComponentTypeName,
     templateStr: string,
-    themeConfig: ThemeConfig,
+    userConfig: UserConfig,
     type: ComponentType,
     path: string
   ): Promise<string> => {
-    const config = new UBConfig(themeConfig)
+    const config = new ComponentObject(userConfig)
     const templateRenderer = new StorybookEjsRenderer(type, path)
     const name = targetName !== 'global' ? targetName : ''
     if (name) {
-      return templateRenderer.render(templateStr, config[name]() as isConfig)
+      return templateRenderer.render(templateStr, config[name]() as IsComponentObject)
     } else {
-      return Promise.reject(`ThemeConfigError:: ${targetName} is not defined.`)
+      return Promise.reject(
+        `ComponentObjectError:: ${targetName} is not defined.`
+      )
     }
   }
 }

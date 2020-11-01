@@ -1,7 +1,7 @@
-import { isConfig } from '@uiConfig/isConfig'
 import IStorybookRenderer from 'src/controllers/storybook/interfaces/IStorybookRenderer'
 import { StoryType } from '@src/controllers/storybook/types/StoryType'
 import ejs from 'ejs'
+import { IsComponentObject } from '@theme/types/IsComponentObject'
 
 export default class StorybookEjsRenderer implements IStorybookRenderer {
   private options: {
@@ -19,7 +19,7 @@ export default class StorybookEjsRenderer implements IStorybookRenderer {
       }
     }
   }
-  render(templateString: string, config: isConfig): Promise<string> {
+  render(templateString: string, config: IsComponentObject): Promise<string> {
     return (ejs.render(templateString, config, this.options) as Promise<
       string
     >).then((str) => {

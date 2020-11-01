@@ -1,4 +1,4 @@
-import Button from '@uiConfig/Button'
+import ButtonConfig from '@theme/types/components/Button'
 
 export default {
   colors: {
@@ -51,4 +51,4 @@ export default {
     }
   },
   radius: 3
-} as Button
+} as ButtonConfig

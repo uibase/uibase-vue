@@ -1,0 +1,45 @@
+<script>
+  export default {
+    name: 'BaseIcon',
+    props: {
+      size: {
+        type: String,
+        default: '32px'
+      },
+      color: {
+        type: String,
+        default: ''
+      },
+      name: {
+        type: String,
+        required: true
+      }
+    },
+    computed: {
+      customStyle() {
+        return {
+          width: this.size,
+          height: this.size
+        }
+      },
+      className() {
+        return this.color ? this.$style[this.color] : []
+      }
+    },
+    render(h) {
+      const style = {
+        width: this.size,
+        height: this.size
+      }
+      const className = this.color ? this.$style[this.color] : []
+      return h(`icon-${this.name}`, {
+        class: className,
+        style,
+        on: { ...this.$listeners },
+        attrs: { ...this.$attrs }
+      })
+    }
+  }
+</script>
+<style lang="scss" module>
+</style>

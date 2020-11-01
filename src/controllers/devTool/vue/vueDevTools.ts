@@ -1,10 +1,10 @@
 import TemplateEjsRenderer from '@helper/TemplateRenderer/TemplateEjsRenderer'
 import CssStyleManager from '@helper/StyleManager/CssStyleManager'
-import ThemeConfig from '@uiConfig/ThemeConfig'
 import { ComponentTypeName } from '@theme/types/ComponentTypeName'
-import UBConfig from '@theme/config/UBConfig'
-import { isConfig } from '@uiConfig/isConfig'
 import { componentNamePath } from '@factory/ComponentProviderFactory/helper'
+import UserConfig from '@theme/types/UserConfig'
+import ComponentObject from '@theme/config/ComponentObject'
+import { IsComponentObject } from '@theme/types/IsComponentObject'
 
 const templateRenderer = new TemplateEjsRenderer(new CssStyleManager())
 
@@ -20,14 +20,19 @@ export default {
   vueTemplateRenderer: (
     targetName: ComponentTypeName,
     templateStr: string,
-    themeConfig: ThemeConfig
+    userConfig: UserConfig
   ): Promise<string> => {
-    const config = new UBConfig(themeConfig)
+    const config = new ComponentObject(userConfig)
     const name = targetName !== 'global' ? targetName : ''
     if (name) {
-      return templateRenderer.render(templateStr, config[name]() as isConfig)
+      return templateRenderer.render(
+        templateStr,
+        config[name]() as IsComponentObject
+      )
     } else {
-      return Promise.reject(`ThemeConfigError:: ${targetName} is not defined.`)
+      return Promise.reject(
+        `ComponentObjectError:: ${targetName} is not defined.`
+      )
     }
   }
 }

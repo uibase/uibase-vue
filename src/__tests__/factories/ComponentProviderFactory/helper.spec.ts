@@ -3,13 +3,13 @@ import {
   findConfigDiff
 } from '@factory/ComponentProviderFactory/helper'
 import defaultConfig from '@util/defaultConfig'
-import ThemeConfig from '@uiConfig/ThemeConfig'
+import UserConfig from '@theme/types/UserConfig'
 
 test('findConfigDiff', () => {
-  const newConfig: ThemeConfig = {
+  const newConfig: UserConfig = {
     global: defaultConfig.global
   }
-  const prevConfig: ThemeConfig = {
+  const prevConfig: UserConfig = {
     global: defaultConfig.global,
     button: defaultConfig.button
   }

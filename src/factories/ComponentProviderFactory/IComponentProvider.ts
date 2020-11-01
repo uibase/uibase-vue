@@ -1,8 +1,8 @@
-import ThemeConfig from '@uiConfig/ThemeConfig'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
+import UserConfig from '@theme/types/UserConfig'
 
 interface IComponentProvider {
-  provide(themConfig: ThemeConfig): Promise<RenderedFilePath[]>
+  provide(userConfig: UserConfig): Promise<RenderedFilePath[]>
 }
 
 export default IComponentProvider
