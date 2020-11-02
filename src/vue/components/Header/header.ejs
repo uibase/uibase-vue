@@ -1,0 +1,38 @@
+<template>
+    <div :class="$style.header">
+        <div v-if="$slots.logo" :class="$style.logo">
+            <slot name="logo" />
+        </div>
+        <div v-if="$slots.utilities" :class="$style.util">
+            <slot name="utilities" />
+        </div>
+    </div>
+</template>
+<script>
+  export default {
+    name: 'BaseHeader',
+  }
+</script>
+<style lang="scss" module>
+    .header {
+        display: flex;
+        <%- this.height(height) %>
+        <%- this.background(background) %>
+        box-sizing: border-box;
+        align-items: center;
+<% if (typeof shadow !== 'undefined') { %>
+        box-shadow: <%- shadow %>;
+<% } %>
+<% if (typeof bottomBorder !== 'undefined') { %>
+        border-bottom: <%- bottomBorder.border %>;
+<% } %>
+    }
+
+    .util {
+        display: flex;
+        flex: 1;
+    }
+    .logo {
+        display: flex;
+    }
+</style>

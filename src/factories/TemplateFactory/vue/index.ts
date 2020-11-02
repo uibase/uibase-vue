@@ -4,6 +4,7 @@ import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import VueBoxComponent from '@src/vue/components/Box/VueBoxComponent'
 import ComponentObject from '@theme/config/ComponentObject'
 import VueIconComponent from '@src/vue/components/Icon/VueIconComponent'
+import VueHeaderComponent from '@src/vue/components/Header/VueHeaderComponent'
 
 export default function(
   componentObject: ComponentObject,
@@ -14,7 +15,7 @@ export default function(
     const button = componentObject.button()
     const box = componentObject.box()
     // const sidebar = componentObject.sidebar()
-    // const header = componentObject.header()
+    const header = componentObject.header()
     // const container = componentObject.container()
     const icons = componentObject.icon()
 
@@ -27,6 +28,11 @@ export default function(
       templateList.box = new VueBoxComponent(componentObject, templateRenderer)
     if (icons)
       templateList.icon = new VueIconComponent(
+        componentObject,
+        templateRenderer
+      )
+    if (header)
+      templateList.header = new VueHeaderComponent(
         componentObject,
         templateRenderer
       )

@@ -1,15 +1,14 @@
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import { TemplateComponent } from '@theme/types/TemplateComponent'
 import ComponentObject from '@theme/config/ComponentObject'
-import IBoxComponent from '@theme/components/IBoxComponent'
-import boxTemplate from './box.ejs'
-import boxTitleTemplate from './box.ejs'
-import { BoxComponentObject } from '@theme/types/components/Box'
+import headerTemplate from './header.ejs'
+import { HeaderComponentObject } from '@theme/types/components/Header'
+import IHeaderComponent from '@theme/components/IHeaderComponent'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettier = require('prettier')
 
-export default class VueBoxComponent implements IBoxComponent {
+export default class VueHeaderComponent implements IHeaderComponent {
   private readonly componentObject: ComponentObject
   private templateRenderer: ITemplateRenderer
 
@@ -22,29 +21,20 @@ export default class VueBoxComponent implements IBoxComponent {
   }
 
   async generate(): Promise<TemplateComponent[]> {
-    if (this.componentObject.box()) {
+    if (this.componentObject.header()) {
       const box = await this.templateRenderer.render(
-        boxTemplate,
-        this.componentObject.box() as BoxComponentObject
-      )
-      const boxTitle = await this.templateRenderer.render(
-        boxTitleTemplate,
-        this.componentObject.box() as BoxComponentObject
+        headerTemplate,
+        this.componentObject.header() as HeaderComponentObject
       )
       return [
         {
-          fileName: ['', 'Box.vue'],
+          fileName: ['', 'Header.vue'],
           fileType: 'vue',
           componentStr: prettier.format(box, { parser: 'vue' })
-        },
-        {
-          fileName: ['', 'BoxTitle.vue'],
-          fileType: 'vue',
-          componentStr: prettier.format(boxTitle, { parser: 'vue' })
         }
       ]
     } else {
-      throw `templateCreationError: box config has not be found.`
+      throw `templateCreationError: header config has not be found.`
     }
   }
 }
