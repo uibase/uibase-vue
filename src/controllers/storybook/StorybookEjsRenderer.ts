@@ -23,12 +23,9 @@ export default class StorybookEjsRenderer implements IStorybookRenderer {
     return (ejs.render(templateString, config, this.options) as Promise<
       string
     >).then((str) => {
-      const strArray = str.split('\n')
-      if (strArray[0].match(/<script/)) {
-        strArray.shift()
-        strArray.pop()
-      }
-      return strArray.join('\n')
+      str = str.replace(/<script>/, '')
+      str = str.replace(/<\/script>/, '')
+      return str
     })
   }
 }

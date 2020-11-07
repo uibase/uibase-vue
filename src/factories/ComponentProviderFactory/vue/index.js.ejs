@@ -17,7 +17,7 @@ export default {
           }
         })
         <% for (var i = 0; i < paths.length; i++) { %>
-        Vue.component('<%- paths[i][0] %>', Base<%- paths[i][0] %>)
+        Vue.component('<%- paths[i][0] %>', <%- paths[i][0] %>)
         <% } %>
     }
 }

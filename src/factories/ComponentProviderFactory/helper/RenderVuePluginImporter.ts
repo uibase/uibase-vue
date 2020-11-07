@@ -19,15 +19,21 @@ export class RenderVuePluginImporter implements IRenderPluginImporter {
       },
       []
     )
-    return ejs.render(
-      templateString,
-      {
-        paths,
-        router: this.router
-      },
-      {
-        async: true
-      }
-    )
+    return ejs
+      .render(
+        templateString,
+        {
+          paths,
+          router: this.router
+        },
+        {
+          async: true
+        }
+      )
+      .then((str) => {
+        str = str.replace(/<script>/gi, '')
+        str = str.replace(/<\/script>/gi, '')
+        return str
+      })
   }
 }
