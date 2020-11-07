@@ -1,5 +1,11 @@
 <template>
-    <base-router-link :to="to" :class="classObject" v-on="$listeners">
+    <base-router-link
+        :to="to"
+        :class="classObject"
+        v-on="$listeners"
+        active-class="link-active"
+        exact-active-class="link-exact-active"
+    >
         <div :class="$style.menu_item_title">
             <slot />
         </div>
@@ -49,22 +55,22 @@
         transition: 0.4s;
     }
     .menu_item {
-        background: $sidebarBackgroundColor;
+        <%- this.background(background) %>
     }
-    .menu_item:global.nuxt-link-exact-active.only_exact.nuxt-link-active {
+    .menu_item:global.link-exact-active.only_exact.link-active {
         font-weight: bold;
-        background: $sidebarActiveBackgroundColor;
-        color: $sidebarActiveTextColor;
+        <%- this.background(active.background) %>
+        <%- this.fontColor(active.fontColor) %>
     }
-    .menu_item:global.nuxt-link-active {
+    .menu_item:global.link-active {
         font-weight: bold;
         background: #fff;
-        color: $sidebarActiveTextColor;
+        <%- this.fontColor(active.fontColor) %>
     }
-    .menu_item:global.nuxt-link-active.only_exact {
+    .menu_item:global.link-active.only_exact {
         font-weight: normal;
-        background: $sidebarBackgroundColor;
-        color: $sidebarTextColor;
+        <%- this.background(background) %>
+        <%- this.fontColor(fontColor) %>
     }
     .menu_item:before {
         position: absolute;
@@ -73,14 +79,14 @@
         content: '';
         display: block;
         width: 4px;
-        background: $sidebarTextColor;
+        <%- this.background(background) %>
         border-radius: 4px 0 0 4px;
         height: 22px;
         transition: 0.4s;
         transform-origin: center;
         transform: scaleY(0);
     }
-    .menu_item:global.nuxt-link-exact-active:before {
+    .menu_item:global.link-exact-active:before {
         transform: scaleY(1);
     }
     .menu_item:after {

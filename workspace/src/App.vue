@@ -19,6 +19,9 @@
         >
       </div>
       <base-number-budge>10</base-number-budge>
+      <base-router-link to="/">リンクだよ</base-router-link>
+      <base-sidebar-list-item to="/" exact>テスト</base-sidebar-list-item>
+      <base-sidebar-list-item to="/test">テストその2</base-sidebar-list-item>
       <div>
         <base-button type="border" size="small">border small</base-button>
       </div>

@@ -6,16 +6,16 @@ import <%- paths[i][0] %> from '<%- paths[i][1] %>'
 
 export default {
     install(Vue, options) {
-        Vue.component('BaseRouterLink', {
-          render(h) {
-            return h('<%- router %>', {
-              attrs: this.$attrs,
-              on: {
-                ...this.$listeners,
-              },
-            })
-          }
-        })
+      Vue.component('BaseRouterLink', {
+        render(h) {
+          return h('router-link', {
+            attrs: this.$attrs,
+            on: {
+              ...this.$listeners
+            },
+          }, this.$slots.default)
+        }
+      })
         <% for (var i = 0; i < paths.length; i++) { %>
         Vue.component('<%- paths[i][0] %>', <%- paths[i][0] %>)
         <% } %>

@@ -6,7 +6,7 @@
             <base-icon
                 :class="[{ [$style.arrow_open]: myOpen }, $style.title_arrow]"
                 @click="click"
-                name="arrow-down"
+                name="ub-arrow-down"
                 size="14px"
                 color="white"
             />
@@ -64,7 +64,7 @@
         max-height: 46px;
     }
     .menu_toggle {
-        background: $sidebarMenuHeaderBackgroundColor;
+        <%- this.background(background) %>
     }
     .menu_toggle_open {
         max-height: 1200px;
@@ -78,7 +78,7 @@
         align-items: center;
     }
     .title_text {
-        color: $sidebarTextColor;
+        <%- this.fontColor(fontColor) %>
         flex: 1;
     }
     .title_arrow {
