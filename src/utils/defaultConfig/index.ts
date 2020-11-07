@@ -4,6 +4,8 @@ import button from './button'
 import container from './container'
 import header from './header'
 import sidebar from './sidebar'
+import numberBudge from './numberBudge'
+import icon from './icon'
 import UserConfig from '@theme/types/UserConfig'
 
 export default {
@@ -12,5 +14,7 @@ export default {
   button,
   container,
   header,
-  sidebar
+  sidebar,
+  icon,
+  numberBudge
 } as UserConfig

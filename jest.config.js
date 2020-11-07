@@ -16,7 +16,7 @@ module.exports = {
   ],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
-    '\\.ejs$': 'jest-raw-loader'
+    '\\.(ejs|svg)$': 'jest-raw-loader'
   },
   collectCoverage: false,
   collectCoverageFrom: []

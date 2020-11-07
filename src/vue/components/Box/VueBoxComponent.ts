@@ -33,12 +33,12 @@ export default class VueBoxComponent implements IBoxComponent {
       )
       return [
         {
-          fileName: ['', 'Box.vue'],
+          fileName: ['', 'BaseBox.vue'],
           fileType: 'vue',
           componentStr: prettier.format(box, { parser: 'vue' })
         },
         {
-          fileName: ['', 'BoxTitle.vue'],
+          fileName: ['', 'BaseBoxTitle.vue'],
           fileType: 'vue',
           componentStr: prettier.format(boxTitle, { parser: 'vue' })
         }

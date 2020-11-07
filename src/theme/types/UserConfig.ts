@@ -5,6 +5,7 @@ import ContainerConfig from '@theme/types/components/Container'
 import HeaderConfig from '@theme/types/components/Header'
 import SidebarConfig from '@theme/types/components/Sidebar'
 import IconConfig from '@theme/types/components/Icon'
+import NumberBudgeConfig from '@theme/types/components/NumberBudge'
 
 export interface UserConfig {
   global: Global
@@ -14,6 +15,7 @@ export interface UserConfig {
   header?: HeaderConfig
   sidebar?: SidebarConfig
   icon?: IconConfig
+  numberBudge?: NumberBudgeConfig
 }
 
 export default UserConfig

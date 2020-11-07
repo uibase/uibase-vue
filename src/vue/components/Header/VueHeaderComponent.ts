@@ -28,7 +28,7 @@ export default class VueHeaderComponent implements IHeaderComponent {
       )
       return [
         {
-          fileName: ['', 'Header.vue'],
+          fileName: ['', 'BaseHeader.vue'],
           fileType: 'vue',
           componentStr: prettier.format(box, { parser: 'vue' })
         }

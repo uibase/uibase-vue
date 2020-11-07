@@ -65,7 +65,14 @@ export default class TemplateEjsRenderer implements ITemplateRenderer {
     }
   }
 
-  render(templateFilePath: string, config: IsComponentObject): Promise<string> {
-    return ejs.render(templateFilePath, config, this.options) as Promise<string>
+  render(
+    templateFilePath: string,
+    config: IsComponentObject,
+    options?: { [key: string]: any }
+  ): Promise<string> {
+    const _config = options ? { ...config, ...options } : { ...config }
+    return ejs.render(templateFilePath, _config, this.options) as Promise<
+      string
+    >
   }
 }

@@ -4,9 +4,11 @@ import IComponentProvider from 'src/factories/ComponentProviderFactory/IComponen
 import fs from 'fs'
 import { RenderedFilePath } from 'src/theme/types/RenderedFilePath'
 import UserConfig from '@theme/types/UserConfig'
+import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
 
 export type UiBaseProviderOptionCriteria = {
   configPath: string
+  router: RouterName
 }
 
 export default class UiBaseProviderPlugin {

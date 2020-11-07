@@ -29,6 +29,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        use: 'raw-loader'
+      },
+      {
         test: /\.ejs$/,
         use: 'raw-loader'
       },

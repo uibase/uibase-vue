@@ -30,7 +30,7 @@ export default class VueButtonComponent implements IButtonComponent {
         .then((str) => {
           return [
             {
-              fileName: ['', 'Button.vue'],
+              fileName: ['', 'BaseButton.vue'],
               fileType: 'vue',
               componentStr: prettier.format(str, { parser: 'vue' })
             }

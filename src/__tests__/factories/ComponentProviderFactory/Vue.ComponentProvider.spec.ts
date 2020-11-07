@@ -9,7 +9,12 @@ test('Vue Component Provider', async () => {
   const pathToProvide = path.join(__dirname, './.uiBase')
   const factory = new TemplateFactory()
   const repository = new ProvidedFsFileRepository()
-  const provider = new VueComponentProvider(pathToProvide, factory, repository)
+  const provider = new VueComponentProvider(
+    pathToProvide,
+    factory,
+    'router-link',
+    repository
+  )
   const config: UserConfig = {
     global: defaultConfig.global,
     button: defaultConfig.button

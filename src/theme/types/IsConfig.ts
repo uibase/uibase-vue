@@ -5,6 +5,7 @@ import HeaderConfig from '@theme/types/components/Header'
 import SidebarConfig from '@theme/types/components/Sidebar'
 import IconConfig from '@theme/types/components/Icon'
 import Global from '@theme/types/components/Global'
+import NumberBudgeConfig from '@theme/types/components/NumberBudge'
 
 export type IsConfig =
   | BoxConfig
@@ -14,3 +15,4 @@ export type IsConfig =
   | SidebarConfig
   | Global
   | IconConfig
+  | NumberBudgeConfig

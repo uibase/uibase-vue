@@ -15,6 +15,9 @@ export type IconComponentObject = {
   colors: {
     [key: string]: string
   }
+  defaultIcons: {
+    [key: string]: string
+  }
 }
 
 export default IconConfig

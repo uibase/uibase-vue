@@ -48,7 +48,7 @@
         default: 'primary',
         validator: (value) => [
           <%- Object.keys(colors).map((colorName) => `"${colorName}"`).join(',') %>
-        ].indexOf(value)
+        ].includes(value)
       }
     },
     render(h) {

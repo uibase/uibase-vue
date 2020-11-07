@@ -4,6 +4,10 @@ import { componentNamePath } from '@factory/ComponentProviderFactory/helper/inde
 import ejs from 'ejs'
 
 export class RenderVuePluginImporter implements IRenderPluginImporter {
+  private router: string
+  constructor(router: string) {
+    this.router = router
+  }
   async render(
     templateString: string,
     renderedFilPaths: RenderedFilePath[]
@@ -18,7 +22,8 @@ export class RenderVuePluginImporter implements IRenderPluginImporter {
     return ejs.render(
       templateString,
       {
-        paths
+        paths,
+        router: this.router
       },
       {
         async: true

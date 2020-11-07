@@ -2,9 +2,11 @@ import { Compiler } from 'webpack'
 import { ComponentProviderFactory } from '@factory/ComponentProviderFactory/index'
 import { ComponentType } from '@theme/types/ComponentType'
 import UiBaseProviderPlugin from '@src/controllers/plugins/webpack/UiBaseProviderPlugin'
+import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
 
 export type UiBasePluginOption = {
   configPath: string
+  router: RouterName
   pathToProvide: string
   type: ComponentType
 }
@@ -19,7 +21,8 @@ export default class UiBaseTemplateProviderPlugin extends UiBaseProviderPlugin {
   }
   apply(compiler: Compiler): void {
     const providerFactory = new ComponentProviderFactory(
-      this.options.pathToProvide
+      this.options.pathToProvide,
+      this.options.router || 'router-link'
     )
     const provider = providerFactory.create(this.options.type)
     compiler.hooks.emit.tapAsync(
@@ -48,5 +51,4 @@ export default class UiBaseTemplateProviderPlugin extends UiBaseProviderPlugin {
       }
     )
   }
-
 }

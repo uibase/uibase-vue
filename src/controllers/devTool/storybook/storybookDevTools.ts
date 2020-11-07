@@ -36,11 +36,13 @@ export default {
     return [
       new UiBaseTemplateProviderPlugin({
         type,
+        router: 'router-link',
         pathToProvide: templatePathToProvide,
         configPath
       }),
       new UiBaseStorybookProviderPlugin({
         type: 'vue',
+        router: 'router-link',
         configPath,
         pathToProvide: storybookPathToProvide,
         importPath: './uiBase'
@@ -58,7 +60,10 @@ export default {
     const templateRenderer = new StorybookEjsRenderer(type, path)
     const name = targetName !== 'global' ? targetName : ''
     if (name) {
-      return templateRenderer.render(templateStr, config[name]() as IsComponentObject)
+      return templateRenderer.render(
+        templateStr,
+        config[name]() as IsComponentObject
+      )
     } else {
       return Promise.reject(
         `ComponentObjectError:: ${targetName} is not defined.`

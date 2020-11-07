@@ -1,0 +1,23 @@
+<template>
+    <div :class="$style.budge">
+        <slot />
+    </div>
+</template>
+<script>
+  export default {
+    name: 'BaseNumberBudge'
+  }
+</script>
+<style lang="scss" module>
+.budge {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    <%- this.radius(radius) %>;
+    padding: 3px 5px;
+    <%- this.background(background) %>
+    font-size: 10px;
+    <%- this.fontColor(fontColor) %>
+    line-height: 1;
+}
+</style>

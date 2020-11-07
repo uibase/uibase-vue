@@ -3,6 +3,8 @@ import { TemplateComponent } from '@theme/types/TemplateComponent'
 import ComponentObject from '@theme/config/ComponentObject'
 import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import IconTemplate from './icon.ejs'
+import IconXmarkTemplate from './icon-ubXmark.ejs'
+import IconArrowDownTemplate from './icon-ubArrowDown.ejs'
 import { IconComponentObject } from '@theme/types/components/Icon'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -21,15 +23,32 @@ export default class VueIconComponent implements IIconComponent {
   }
   async generate(): Promise<TemplateComponent[]> {
     if (this.componentObject.icon()) {
-      const icons = await this.templateRenderer.render(
-        IconTemplate,
-        this.componentObject.icon() as IconComponentObject
+      const iconObject = this.componentObject.icon() as IconComponentObject
+      // add Default Icons
+      const icons = await this.templateRenderer.render(IconTemplate, iconObject)
+      const xmarkIcon = await this.templateRenderer.render(
+        IconXmarkTemplate,
+        iconObject
+      )
+      const arrowDownIcon = await this.templateRenderer.render(
+        IconArrowDownTemplate,
+        iconObject
       )
       return [
         {
-          fileName: ['', 'Icon.vue'],
+          fileName: ['', 'BaseIcon.vue'],
           fileType: 'vue',
           componentStr: prettier.format(icons, { parser: 'vue' })
+        },
+        {
+          fileName: ['', 'IconUbXmark.vue'],
+          fileType: 'vue',
+          componentStr: prettier.format(xmarkIcon, { parser: 'vue' })
+        },
+        {
+          fileName: ['', 'IconUbArrowDown.vue'],
+          fileType: 'vue',
+          componentStr: prettier.format(arrowDownIcon, { parser: 'vue' })
         }
       ]
     } else {

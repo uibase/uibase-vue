@@ -11,18 +11,23 @@ import templateProvideRepositoryHandler from '@helper/templateProvideRepositoryH
 import UserConfig from '@theme/types/UserConfig'
 import ComponentObject from '@theme/config/ComponentObject'
 
+export type RouterName = 'nuxt-link' | 'router-link' | 'a'
+
 export default class VueComponentProvider implements IComponentProvider {
   private readonly pathToProvide: string
   private previousConfig: UserConfig
   private templateFactory: ITemplateFactory
   private renderedPaths: RenderedFilePath[]
   private readonly repository: IProvidedFileRepository
+  private readonly router: RouterName
 
   constructor(
     pathToProvide: string,
     templateFactory: ITemplateFactory,
+    router: RouterName,
     repository: IProvidedFileRepository
   ) {
+    this.router = router
     this.pathToProvide = pathToProvide
     this.templateFactory = templateFactory
     this.repository = repository
@@ -41,11 +46,17 @@ export default class VueComponentProvider implements IComponentProvider {
       ? userConfig
       : newComponents
     const changedVueTemplateList = this.templateFactory.generate(
-      new ComponentObject({ ...targetComponents, global: userConfig.global }),
+      new ComponentObject({
+        ...targetComponents,
+        global: userConfig.global
+      }),
       'vue'
     )
     const deletedVueTemplateList = this.templateFactory.generate(
-      new ComponentObject({ ...deletedComponents, global: userConfig.global }),
+      new ComponentObject({
+        ...deletedComponents,
+        global: userConfig.global
+      }),
       'vue'
     )
 
@@ -65,7 +76,7 @@ export default class VueComponentProvider implements IComponentProvider {
     )
     this.renderedPaths = Array.from(new Set(this.renderedPaths))
     console.log(this.renderedPaths)
-    await this.renderPluginImporter(this.renderedPaths)
+    await this.renderPluginImporter(this.renderedPaths, this.router)
 
     this.previousConfig = { ...userConfig }
 
@@ -84,9 +95,10 @@ export default class VueComponentProvider implements IComponentProvider {
   }
 
   private async renderPluginImporter(
-    renderedFilePaths: RenderedFilePath[]
+    renderedFilePaths: RenderedFilePath[],
+    router: RouterName
   ): Promise<boolean> {
-    const importer = new RenderVuePluginImporter()
+    const importer = new RenderVuePluginImporter(router)
     const str = await importer.render(pluginImportTemplate, renderedFilePaths)
     this.repository.add(this.pathToProvide, 'index.js', str)
     return true
