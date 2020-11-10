@@ -1,0 +1,64 @@
+<template>
+    <div :class="classObject" :style="styleObject">
+        <img :class="$style.image" :src="showImage" />
+    </div>
+</template>
+<script>
+  export default {
+    name: 'BaseAvatar',
+    props: {
+      type: {
+        type: String,
+        default: '<%- this.findDefault(styles) %>',
+        validator: (value) => [
+          <%- this.enumString(styles) %>
+        ].includes(value)
+      },
+      size: {
+        type: String,
+        default: '<%- defaultSize %>px'
+      },
+      image: {
+        type: String,
+        default: ''
+      }
+    },
+    computed: {
+      classObject() {
+        return [this.$style[this.type], this.$style.base_avatar]
+      },
+      styleObject() {
+        const size = {
+          width: this.size,
+          height: this.size
+        }
+        return {
+          backgroundImage: `url(${this.showImage})`,
+          ...size
+        }
+      },
+      showImage() {
+        if (this.image) return this.image
+        return '<%- anonymousImage || 'https://placehold.it/300x300' %>'
+      }
+    }
+  }
+</script>
+<style lang="scss" module>
+    .base_avatar {
+        background: center center / cover no-repeat;
+        overflow: hidden;
+        <%- Object.keys(styles).reduce((str, typeName) => {
+        return str + `
+        &.${typeName} {
+            ${this.style(styles[typeName])}
+        }
+        `
+        }, '') %>
+    }
+    .image {
+        display: block;
+        width: 100%;
+        opacity: 0;
+    }
+</style>

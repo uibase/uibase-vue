@@ -6,7 +6,7 @@ import sidebarMenuTemplate from './sidebar-menu.ejs'
 import sidebarListItemTemplate from './sidebar-list-item.ejs'
 import sidebarTitleTemplate from './sidebar-list-title.ejs'
 import ISidebarComponent from '@theme/components/ISidebarComponent'
-import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
+import { RouterName } from '@src/providers/vue/VueComponentProvider'
 import { SidebarComponentObject } from '@theme/types/components/Sidebar'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

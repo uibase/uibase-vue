@@ -6,6 +6,7 @@ import SidebarConfig from '@theme/types/components/Sidebar'
 import IconConfig from '@theme/types/components/Icon'
 import Global from '@theme/types/components/Global'
 import NumberBudgeConfig from '@theme/types/components/NumberBudge'
+import AvatarConfig from '@theme/types/components/Avatar'
 
 export type IsConfig =
   | BoxConfig
@@ -16,3 +17,4 @@ export type IsConfig =
   | Global
   | IconConfig
   | NumberBudgeConfig
+  | AvatarConfig

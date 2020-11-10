@@ -25,6 +25,10 @@ import ContainerComponentModel from '@theme/config/ContainerComponentModel'
 import HeaderComponentModel from '@theme/config/HeaderComponentModel'
 import SidebarComponentModel from '@theme/config/SidebarComponentModel'
 import NumberBudgeComponentModel from '@theme/config/NumberBudgeComponentModel'
+import AvatarConfig, {
+  AvatarComponentObject
+} from '@theme/types/components/Avatar'
+import AvatarComponentModel from '@theme/config/AvatarComponentModel'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const deepmerge = require('deepmerge')
@@ -39,6 +43,7 @@ type DependencyOfferName =
   | 'header'
   | 'numberBudge'
   | 'sidebar'
+  | 'avatar'
 
 type LocalDependencyOfferName =
   | 'iconConfig'
@@ -48,6 +53,7 @@ type LocalDependencyOfferName =
   | 'headerConfig'
   | 'numberBudgeConfig'
   | 'sidebarConfig'
+  | 'avatarConfig'
 
 export default class DependencyProvider {
   private iconConfig: IconConfig | null
@@ -57,6 +63,7 @@ export default class DependencyProvider {
   private containerConfig: ContainerConfig | null
   private numberBudgeConfig: NumberBudgeConfig | null
   private sidebarConfig: SidebarConfig | null
+  private avatarConfig: AvatarConfig | null
 
   constructor(...args: DependencyOffer[]) {
     this.iconConfig = null
@@ -66,6 +73,7 @@ export default class DependencyProvider {
     this.headerConfig = null
     this.numberBudgeConfig = null
     this.sidebarConfig = null
+    this.avatarConfig = null
 
     args.forEach((offer: DependencyOffer) => {
       Object.keys(offer).forEach((key: string) => {
@@ -127,6 +135,14 @@ export default class DependencyProvider {
     if (this.numberBudgeConfig) {
       const config = this.cloneUserConfigAndOverride(userConfig, 'numberBudge')
       const result = new NumberBudgeComponentModel(config)
+      return result.generate()
+    }
+  }
+
+  avatar(userConfig: UserConfig): AvatarComponentObject | undefined {
+    if (this.avatarConfig) {
+      const config = this.cloneUserConfigAndOverride(userConfig, 'avatar')
+      const result = new AvatarComponentModel(config)
       return result.generate()
     }
   }

@@ -6,6 +6,7 @@ import header from './header'
 import sidebar from './sidebar'
 import numberBudge from './numberBudge'
 import icon from './icon'
+import avatar from './avatar'
 import UserConfig from '@theme/types/UserConfig'
 
 export default {
@@ -16,5 +17,6 @@ export default {
   header,
   sidebar,
   icon,
+  avatar,
   numberBudge
 } as UserConfig

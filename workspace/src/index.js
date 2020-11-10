@@ -12,6 +12,7 @@ import BaseSidebar from '../../src/vue/components/Sidebar/sidebar.ejs'
 import BaseSidebarMenu from '../../src/vue/components/Sidebar/sidebar-menu.ejs'
 import BaseSidebarListItem from '../../src/vue/components/Sidebar/sidebar-list-item.ejs'
 import BaseSidebarListTitle from '../../src/vue/components/Sidebar/sidebar-list-title.ejs'
+import BaseAvatar from '../../src/vue/components/Avatar/avatar.ejs'
 import VueRouter from 'vue-router'
 import './common.css'
 
@@ -46,6 +47,7 @@ Vue.component('BaseSidebar', BaseSidebar)
 Vue.component('BaseSidebarMenu', BaseSidebarMenu)
 Vue.component('BaseSidebarListItem', BaseSidebarListItem)
 Vue.component('BaseSidebarListTitle', BaseSidebarListTitle)
+Vue.component('BaseAvatar', BaseAvatar)
 Vue.component('IconUbXmark', IconUbXmark)
 Vue.component('IconUbArrowDown', IconArrowDown)
 

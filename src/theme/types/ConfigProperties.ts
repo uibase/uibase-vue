@@ -7,6 +7,8 @@ import { Radius } from '@theme/types/commonProps/Radius'
 import { Shadow } from '@theme/types/commonProps/Shadow'
 import { Width } from '@theme/types/commonProps/Width'
 import { Margin } from '@theme/types/commonProps/Margin'
+import { Size } from '@theme/types/commonProps/Size'
+import Color from '@theme/types/commonProps/Color'
 
 export type ConfigProperties = Background &
   Margin &
@@ -18,6 +20,8 @@ export type ConfigProperties = Background &
   Opacity &
   Radius &
   Shadow &
+  Size &
+  Color &
   Width & {
     [propName: string]: any
   }

@@ -6,6 +6,7 @@ import { SidebarComponentObject } from '@theme/types/components/Sidebar'
 import Global from '@theme/types/components/Global'
 import { IconComponentObject } from '@theme/types/components/Icon'
 import { NumberBudgeComponentObject } from '@theme/types/components/NumberBudge'
+import { AvatarComponentObject } from '@theme/types/components/Avatar'
 
 export type IsComponentObject =
   | BoxComponentObject
@@ -16,3 +17,4 @@ export type IsComponentObject =
   | IconComponentObject
   | Global
   | NumberBudgeComponentObject
+  | AvatarComponentObject

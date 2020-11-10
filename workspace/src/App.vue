@@ -11,7 +11,11 @@
       <base-sidebar :class="$style.sidebar" :routes="routes">
         <template v-slot:top>
           <base-box :class="$style.sidebarBox" type="white" padding="8px">
-            User Name.
+            <div :class="$style.userContent">
+              <base-avatar image="https://randomuser.me/api/portraits/men/46.jpg" />
+              <p :class="$style.userName">John Davis</p>
+              <base-button>Logout</base-button>
+            </div>
           </base-box>
         </template>
       </base-sidebar>
@@ -104,6 +108,19 @@ export default {
   flex: 1;
 }
 .sidebarBox {
-  margin: 8px;
+  margin: 48px 8px 8px 8px;
+}
+
+.userContent {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  margin-top: -38px;
+}
+.userName {
+  font-size: 11px;
+  font-weight: bold;
+  margin: 4px 0 ;
 }
 </style>

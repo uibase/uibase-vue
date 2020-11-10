@@ -15,6 +15,8 @@ import NumberBudgeComponentModel from '@theme/config/NumberBudgeComponentModel'
 import DependencyProvider from '@theme/config/DependencyProvider'
 import DependencyOffer from '@theme/types/DependencyOffers'
 import { NumberBudgeComponentObject } from '@theme/types/components/NumberBudge'
+import AvatarComponentModel from '@theme/config/AvatarComponentModel'
+import { AvatarComponentObject } from '@theme/types/components/Avatar'
 
 export default class ComponentObject {
   private userConfig: UserConfig
@@ -25,6 +27,7 @@ export default class ComponentObject {
   private readonly headerModel: HeaderComponentModel | null
   private readonly sidebarModel: SidebarComponentModel | null
   private readonly numberBudgeModel: NumberBudgeComponentModel | null
+  private readonly avatarModel: AvatarComponentModel | null
   private dependencyProvider: DependencyProvider
 
   constructor(userConfig: UserConfig) {
@@ -51,6 +54,9 @@ export default class ComponentObject {
     this.numberBudgeModel = this.userConfig.numberBudge
       ? new NumberBudgeComponentModel(userConfig)
       : null
+    this.avatarModel = this.userConfig.avatar
+      ? new AvatarComponentModel(userConfig)
+      : null
     // setUp Dependencies
     const offers = [] as DependencyOffer[]
     if (this.iconModel)
@@ -66,6 +72,8 @@ export default class ComponentObject {
       offers.push(this.sidebarModel.offerDependenciesToProvider())
     if (this.numberBudgeModel)
       offers.push(this.numberBudgeModel.offerDependenciesToProvider())
+    if (this.avatarModel)
+      offers.push(this.avatarModel.offerDependenciesToProvider())
 
     this.dependencyProvider = new DependencyProvider(...offers)
   }
@@ -115,6 +123,13 @@ export default class ComponentObject {
     return (
       this.numberBudgeModel?.generate() ||
       this.dependencyProvider.numberBudge(this.userConfig)
+    )
+  }
+
+  avatar(): AvatarComponentObject | undefined {
+    return (
+      this.avatarModel?.generate() ||
+      this.dependencyProvider.avatar(this.userConfig)
     )
   }
 }
