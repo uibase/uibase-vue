@@ -1,10 +1,10 @@
 import webpack from 'webpack'
 import Compilation = webpack.compilation.Compilation
-import IComponentProvider from 'src/factories/ComponentProviderFactory/IComponentProvider'
+import IComponentProvider from '@src/providers/IComponentProvider'
 import fs from 'fs'
 import { RenderedFilePath } from 'src/theme/types/RenderedFilePath'
 import UserConfig from '@theme/types/UserConfig'
-import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
+import { RouterName } from '@src/providers/vue/VueComponentProvider'
 
 export type UiBaseProviderOptionCriteria = {
   configPath: string

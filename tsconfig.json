@@ -44,8 +44,6 @@
     // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
      "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
      "paths": {
-       "@uiConfig/*": ["src/theme/types/config/*"],
-       "@factory/*": ["src/factories/*"],
        "@helper/*": ["src/helpers/*"],
        "@src/*": ["src/*"],
        "@util/*": ["src/utils/*"],

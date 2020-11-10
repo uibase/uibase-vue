@@ -8,7 +8,7 @@ import VueHeaderComponent from '@src/vue/components/Header/VueHeaderComponent'
 import VueAvatarComponent from '@src/vue/components/Avatar/VueAvatarComponent'
 import VueNumberBudgeComponent from '@src/vue/components/NumberBudge/VueNumberBudgeComponent'
 import VueSidebarComponent from '@src/vue/components/Sidebar/VueSidebarComponent'
-import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
+import { RouterName } from '@src/providers/vue/VueComponentProvider'
 
 export default function(
   componentObject: ComponentObject,

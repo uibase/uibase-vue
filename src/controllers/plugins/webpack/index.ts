@@ -1,7 +1,7 @@
 import path from 'path'
 import { ComponentType } from '@theme/types/ComponentType'
 import UiBaseTemplateProviderPlugin from '@src/controllers/plugins/webpack/UiBaseTemplateProviderPlugin'
-import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
+import { RouterName } from '@src/providers/vue/VueComponentProvider'
 
 export function useUiBasePlugin(
   type: ComponentType,

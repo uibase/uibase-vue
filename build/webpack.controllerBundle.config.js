@@ -13,10 +13,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.ejs'],
     alias: {
-      '@uiConfig': path.resolve(__dirname, '../src/theme/types/config/'),
       '@theme': path.resolve(__dirname, '../src/theme/'),
       '@helper': path.resolve(__dirname, '../src/helpers/'),
-      '@factory': path.resolve(__dirname, '../src/factories/'),
       '@util': path.resolve(__dirname, '../src/utils'),
       '@src': path.resolve(__dirname, '../src/')
     },
