@@ -15,7 +15,8 @@ test('css style manager', () => {
     hover: {
       this: 'is not readable'
     },
-    width: 200
+    width: 200,
+    color: 'red'
   }
 
   const styleManager = new CssStyleManager()

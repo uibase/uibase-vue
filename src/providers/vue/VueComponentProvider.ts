@@ -1,35 +1,32 @@
 import IComponentProvider from '../IComponentProvider'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
-import { findConfigDiff } from '@factory/ComponentProviderFactory/helper/index'
+import { findConfigDiff } from '@src/providers/helper'
 import IProvidedFileRepository from '@src/repositories/IProvidedFileRepository'
 import { TemplateList } from '@theme/types/TemplateList'
-import ITemplateFactory from '@factory/TemplateFactory/ITemplateFactory'
 import ProvideVueTemplatesInteractor from '@src/vue/ProvideVueTemplatesInteractor'
-import { RenderVuePluginImporter } from '@factory/ComponentProviderFactory/helper/RenderVuePluginImporter'
+import { RenderVuePluginImporter } from './RenderVuePluginImporter'
 import pluginImportTemplate from './index.js.ejs'
 import templateProvideRepositoryHandler from '@helper/templateProvideRepositoryHandler'
 import UserConfig from '@theme/types/UserConfig'
 import ComponentObject from '@theme/config/ComponentObject'
+import TemplateVueFactory from '@src/providers/vue/TemplateVueFactory'
 
 export type RouterName = 'nuxt-link' | 'router-link' | 'a'
 
 export default class VueComponentProvider implements IComponentProvider {
   private readonly pathToProvide: string
   private previousConfig: UserConfig
-  private templateFactory: ITemplateFactory
   private renderedPaths: RenderedFilePath[]
   private readonly repository: IProvidedFileRepository
   private readonly router: RouterName
 
   constructor(
     pathToProvide: string,
-    templateFactory: ITemplateFactory,
     router: RouterName,
     repository: IProvidedFileRepository
   ) {
     this.router = router
     this.pathToProvide = pathToProvide
-    this.templateFactory = templateFactory
     this.repository = repository
     this.previousConfig = {} as UserConfig
     this.renderedPaths = []
@@ -41,23 +38,23 @@ export default class VueComponentProvider implements IComponentProvider {
       this.previousConfig
     )
 
+    const factory = new TemplateVueFactory(this.router)
+
     // take all components if set global
     const targetComponents = Object.keys(newComponents).includes('global')
       ? userConfig
       : newComponents
-    const changedVueTemplateList = this.templateFactory.generate(
+    const changedVueTemplateList = factory.generate(
       new ComponentObject({
         ...targetComponents,
         global: userConfig.global
-      }),
-      'vue'
+      })
     )
-    const deletedVueTemplateList = this.templateFactory.generate(
+    const deletedVueTemplateList = factory.generate(
       new ComponentObject({
         ...deletedComponents,
         global: userConfig.global
-      }),
-      'vue'
+      })
     )
 
     const interactor = new ProvideVueTemplatesInteractor(

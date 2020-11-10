@@ -6,7 +6,7 @@ import IStorybookRenderer from '@src/controllers/storybook/interfaces/IStorybook
 import { ComponentFileType } from '@theme/types/ComponentFileType'
 import templateProvideRepositoryHandler from '@helper/templateProvideRepositoryHandler'
 import IProvidedFileRepository from '@src/repositories/IProvidedFileRepository'
-import IComponentProvider from '@factory/ComponentProviderFactory/IComponentProvider'
+import IComponentProvider from '@src/providers/IComponentProvider'
 import UserConfig from '@theme/types/UserConfig'
 import ComponentObject from '@theme/config/ComponentObject'
 

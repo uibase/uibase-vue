@@ -1,7 +1,4 @@
-import {
-  componentNamePath,
-  findConfigDiff
-} from '@factory/ComponentProviderFactory/helper'
+import { componentNamePath, findConfigDiff } from '@src/providers/helper'
 import defaultConfig from '@util/defaultConfig'
 import UserConfig from '@theme/types/UserConfig'
 

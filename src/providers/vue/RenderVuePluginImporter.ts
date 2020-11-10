@@ -1,6 +1,6 @@
-import IRenderPluginImporter from '@factory/ComponentProviderFactory/helper/IRenderPluginImporter'
+import IRenderPluginImporter from '@src/providers/helper/IRenderPluginImporter'
 import { RenderedFilePath } from '@theme/types/RenderedFilePath'
-import { componentNamePath } from '@factory/ComponentProviderFactory/helper/index'
+import { componentNamePath } from '@src/providers/helper'
 import ejs from 'ejs'
 
 export class RenderVuePluginImporter implements IRenderPluginImporter {

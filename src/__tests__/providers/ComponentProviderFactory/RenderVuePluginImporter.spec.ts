@@ -1,5 +1,5 @@
 import path from 'path'
-import { RenderVuePluginImporter } from '@factory/ComponentProviderFactory/helper/RenderVuePluginImporter'
+import { RenderVuePluginImporter } from '@src/providers/vue/RenderVuePluginImporter'
 test('RenderVuePluginImporter', async () => {
   const dir = path.resolve(__dirname, '../vue/index.js.ejs')
   const importer = new RenderVuePluginImporter('router-link')

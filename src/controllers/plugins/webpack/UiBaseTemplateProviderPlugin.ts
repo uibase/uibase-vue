@@ -1,8 +1,10 @@
 import { Compiler } from 'webpack'
-import { ComponentProviderFactory } from '@factory/ComponentProviderFactory/index'
 import { ComponentType } from '@theme/types/ComponentType'
 import UiBaseProviderPlugin from '@src/controllers/plugins/webpack/UiBaseProviderPlugin'
-import { RouterName } from '@factory/ComponentProviderFactory/vue/VueComponentProvider'
+import { RouterName } from '@src/providers/vue/VueComponentProvider'
+import IComponentProvider from '@src/providers/IComponentProvider'
+import VueComponentProvider from '@src/providers/vue/VueComponentProvider'
+import ProvidedFsFileRepository from '@src/repositories/ProvidedFsFileRepository'
 
 export type UiBasePluginOption = {
   configPath: string
@@ -20,11 +22,7 @@ export default class UiBaseTemplateProviderPlugin extends UiBaseProviderPlugin {
     this.initialize = false
   }
   apply(compiler: Compiler): void {
-    const providerFactory = new ComponentProviderFactory(
-      this.options.pathToProvide,
-      this.options.router || 'router-link'
-    )
-    const provider = providerFactory.create(this.options.type)
+    const provider = this.getProvider(this.options.type)
     compiler.hooks.emit.tapAsync(
       'create files',
       async (compilation, callback) => {
@@ -50,5 +48,19 @@ export default class UiBaseTemplateProviderPlugin extends UiBaseProviderPlugin {
         callback()
       }
     )
+  }
+
+  getProvider(type: ComponentType): IComponentProvider {
+    const repository = new ProvidedFsFileRepository()
+    switch (type) {
+      case 'vue':
+        return new VueComponentProvider(
+          this.options.pathToProvide,
+          this.options.router,
+          repository
+        )
+      default:
+        throw `sorry. ${type} is not support yet.`
+    }
   }
 }
