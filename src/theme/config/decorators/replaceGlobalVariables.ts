@@ -12,10 +12,18 @@ export default function replaceGlobalVariables(
       const variables = {
         ...this.userConfig.global.colors
       }
-      Object.keys(variables).forEach((variable) => {
-        const replaceString = new RegExp(`\\$${variable}`, 'gi')
-        resultStr = resultStr.replace(replaceString, variables[variable])
-      })
+      Object.keys(variables)
+        .sort((a, b) => {
+          if (a.length > b.length) {
+            return -1
+          } else {
+            return 1
+          }
+        })
+        .forEach((variable) => {
+          const replaceString = new RegExp(`\\$${variable}`, 'gi')
+          resultStr = resultStr.replace(replaceString, variables[variable])
+        })
       return JSON.parse(resultStr)
     }
   }

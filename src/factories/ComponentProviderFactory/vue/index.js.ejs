@@ -8,7 +8,7 @@ export default {
     install(Vue, options) {
       Vue.component('BaseRouterLink', {
         render(h) {
-          return h('router-link', {
+          return h('<%- router %>', {
             attrs: this.$attrs,
             on: {
               ...this.$listeners

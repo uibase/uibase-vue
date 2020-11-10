@@ -8,8 +8,12 @@ import BaseBoxTitle from '../../src/vue/components/Box/box-title.ejs'
 import BaseIcon from '../../src/vue/components/Icon/icon.ejs'
 import BaseHeader from '../../src/vue/components/Header/header.ejs'
 import BaseNumberBudge from '../../src/vue/components/NumberBudge/numberBudge.ejs'
+import BaseSidebar from '../../src/vue/components/Sidebar/sidebar.ejs'
+import BaseSidebarMenu from '../../src/vue/components/Sidebar/sidebar-menu.ejs'
 import BaseSidebarListItem from '../../src/vue/components/Sidebar/sidebar-list-item.ejs'
+import BaseSidebarListTitle from '../../src/vue/components/Sidebar/sidebar-list-title.ejs'
 import VueRouter from 'vue-router'
+import './common.css'
 
 Vue.use(VueRouter)
 
@@ -38,7 +42,10 @@ Vue.component('BaseBoxTitle', BaseBoxTitle)
 Vue.component('BaseIcon', BaseIcon)
 Vue.component('BaseHeader', BaseHeader)
 Vue.component('BaseNumberBudge', BaseNumberBudge)
+Vue.component('BaseSidebar', BaseSidebar)
+Vue.component('BaseSidebarMenu', BaseSidebarMenu)
 Vue.component('BaseSidebarListItem', BaseSidebarListItem)
+Vue.component('BaseSidebarListTitle', BaseSidebarListTitle)
 Vue.component('IconUbXmark', IconUbXmark)
 Vue.component('IconUbArrowDown', IconArrowDown)
 

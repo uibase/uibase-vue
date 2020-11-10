@@ -1,0 +1,11 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background-color:#dbe8f7;
+}
+
+.header {
+  position: fixed;
+}

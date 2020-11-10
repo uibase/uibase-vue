@@ -1,43 +1,109 @@
 <template>
-  <div>
-    <base-box type="white" class="box-container">
-      <base-header>
-        <template v-slot:logo>Logo</template>
-        <template v-slot:utilities>utility Area</template>
-      </base-header>
-    </base-box>
-    <base-box type="white" padding="12px">
-      <base-box-title>This is Title.</base-box-title>
-      <base-icon name="ub-xmark" color="deepRed" />
-      <base-icon name="ub-arrow-down" color="deepRed" />
-      <div>
-        <base-button>button</base-button>
-      </div>
-      <div>
-        <base-button type="secondary" size="large"
-          >button secondary large</base-button
-        >
-      </div>
-      <base-number-budge>10</base-number-budge>
-      <base-router-link to="/">リンクだよ</base-router-link>
-      <base-sidebar-list-item to="/" exact>テスト</base-sidebar-list-item>
-      <base-sidebar-list-item to="/test">テストその2</base-sidebar-list-item>
-      <div>
-        <base-button type="border" size="small">border small</base-button>
-      </div>
-      <template v-slot:footer>
-        footer for base-box
+  <div :class="$style.app">
+    <base-header :class="$style.header">
+      <template v-slot:logo>
+        <div style="margin: 0px 8px; font-weight: bold;">
+          UI Base Components. Test
+        </div>
       </template>
-    </base-box>
+    </base-header>
+    <div :class="$style.container">
+      <base-sidebar :class="$style.sidebar" :routes="routes">
+        <template v-slot:top>
+          <base-box :class="$style.sidebarBox" type="white" padding="8px">
+            User Name.
+          </base-box>
+        </template>
+      </base-sidebar>
+      <div :class="$style.body">
+        <h1>テスト</h1>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      routes: [
+        {
+          name: 'Top Page',
+          icon: 'ub-xmark',
+          to: '/',
+          exact: true
+        },
+        {
+          name: 'Page A',
+          to: '/a',
+          exact: true
+        },
+        {
+          name: 'Title',
+          togglable: true,
+          children: [
+            {
+              name: 'Title Page A',
+              to: '/title-page-a',
+              exact: true
+            },
+            {
+              name: 'Title Page B',
+              to: '/title-page-b',
+              exact: true
+            }
+          ]
+        },
+        {
+          name: 'Page B',
+          to: '/b',
+          exact: true
+        },
+        {
+          name: 'Page C',
+          to: '/c',
+          exact: true
+        },
+        {
+          name: 'Page D',
+          to: '/d',
+          exact: true
+        },
+        {
+          name: 'Page E',
+          to: '/e',
+          exact: true
+        },
+        {
+          name: 'Page F',
+          to: '/f',
+          exact: true
+        },
+      ]
+    }
+  }
 }
 </script>
-<style type="text/css" scoped>
-.box-container {
-  height: 599px;
+<style module>
+.header {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+.sidebar {
+  overflow-y: scroll;
+}
+.container {
+  margin-top: 50px;
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: stretch;
+}
+.body {
+  flex: 1;
+}
+.sidebarBox {
+  margin: 8px;
 }
 </style>

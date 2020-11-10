@@ -7,7 +7,10 @@
         exact-active-class="link-exact-active"
     >
         <div :class="$style.menu_item_title">
-            <slot />
+            <base-icon :class="$style.icon" :name="icon" size="20" v-if="icon" />
+            <span>
+                <slot />
+            </span>
         </div>
         <base-number-budge v-if="num">{{ num }}</base-number-budge>
     </base-router-link>
@@ -22,6 +25,10 @@
       },
       num: {
         type: Number,
+        default: null
+      },
+      icon: {
+        type: String,
         default: null
       },
       exact: {
@@ -45,32 +52,32 @@
     .menu_item {
         position: relative;
         height: 46px;
-        color: #fff;
+        <%- this.fontColor(fontColor) %>
+        <%- this.fontWeight(fontWeight) %>
+        <%- this.background(background) %>
         display: flex;
         align-items: center;
         font-size: 14px;
+
+    }
+    <% if (variant === 'round') { %>
+    .menu_item {
+        border-radius: 10px;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 8px;
+        margin: 8px;
+        text-decoration: none;
+        transition: 0.4s;
+
+    }
+    <% } %>
+    <% if (variant === 'default') { %>
+    .menu_item {
         box-sizing: border-box;
         padding: 16px;
         text-decoration: none;
         transition: 0.4s;
-    }
-    .menu_item {
-        <%- this.background(background) %>
-    }
-    .menu_item:global.link-exact-active.only_exact.link-active {
-        font-weight: bold;
-        <%- this.background(active.background) %>
-        <%- this.fontColor(active.fontColor) %>
-    }
-    .menu_item:global.link-active {
-        font-weight: bold;
-        background: #fff;
-        <%- this.fontColor(active.fontColor) %>
-    }
-    .menu_item:global.link-active.only_exact {
-        font-weight: normal;
-        <%- this.background(background) %>
-        <%- this.fontColor(fontColor) %>
     }
     .menu_item:before {
         position: absolute;
@@ -99,7 +106,43 @@
         bottom: 0;
         right: 0;
     }
+    <% } %>
+    .menu_item:global.link-exact-active.only_exact.link-active {
+        font-weight: bold;
+        <%- this.background(active.background) %>
+        <%- this.fontColor(active.fontColor) %>
+    }
+    .menu_item:global.link-active {
+        font-weight: bold;
+        cursor: default;
+        <%- this.background(active.background) %>
+        <%- this.fontColor(active.fontColor) %>
+    }
+    .menu_item:global.link-active.only_exact {
+        font-weight: normal;
+        cursor: pointer;
+        <%- this.background(background) %>
+        <%- this.fontColor(fontColor) %>
+    }
+    .icon {
+        margin-right: 8px;
+        fill: <%- icon.color %>;
+    }
+    .menu_item:global.link-exact-active {
+        :local(.icon) {
+            fill: <%- active.icon.color %>;
+        }
+    }
     .menu_item_title {
+        display: flex;
         flex: 1;
+        align-items: center;
+    }
+    /* hover controll */
+    /* default hover */
+    .menu_item:hover {
+        <%- this.background(hover.background) %>
+        <%- this.fontColor(hover.fontColor) %>
+        <%- this.fontWeight(hover.fontWeight) %>
     }
 </style>

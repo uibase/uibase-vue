@@ -9,7 +9,7 @@ module.exports = function(source) {
   console.log(componentName)
   const configPath = path.resolve(process.env.PWD, './uibase.config.js')
 
-  this.addDependency(configPath)
+  // this.addDependency(configPath)
 
   const config = require(configPath)
   vueDevTools

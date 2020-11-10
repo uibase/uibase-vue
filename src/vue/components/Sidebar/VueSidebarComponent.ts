@@ -2,6 +2,7 @@ import ITemplateRenderer from '@theme/helpers/ITemplateRenderer'
 import { TemplateComponent } from '@theme/types/TemplateComponent'
 import ComponentObject from '@theme/config/ComponentObject'
 import sidebarTemplate from './sidebar.ejs'
+import sidebarMenuTemplate from './sidebar-menu.ejs'
 import sidebarListItemTemplate from './sidebar-list-item.ejs'
 import sidebarTitleTemplate from './sidebar-list-title.ejs'
 import ISidebarComponent from '@theme/components/ISidebarComponent'
@@ -30,6 +31,10 @@ export default class VueSidebarComponent implements ISidebarComponent {
         sidebarTemplate,
         this.componentObject.sidebar() as SidebarComponentObject
       )
+      const sidebarMenu = await this.templateRenderer.render(
+        sidebarMenuTemplate,
+        this.componentObject.sidebar() as SidebarComponentObject
+      )
       const sidebarTitle = await this.templateRenderer.render(
         sidebarTitleTemplate,
         this.componentObject.sidebar() as SidebarComponentObject
@@ -43,6 +48,11 @@ export default class VueSidebarComponent implements ISidebarComponent {
           fileName: ['', 'BaseSidebar.vue'],
           fileType: 'vue',
           componentStr: prettier.format(sidebar, { parser: 'vue' })
+        },
+        {
+          fileName: ['', 'BaseSidebarMenu.vue'],
+          fileType: 'vue',
+          componentStr: prettier.format(sidebarMenu, { parser: 'vue' })
         },
         {
           fileName: ['', 'BaseSidebarTitle.vue'],

@@ -1,27 +1,8 @@
 <template>
-    <div>
-        <template v-for="route in routes">
-            <base-sidebar-list-item
-                v-if=" (show(route) && route.children === undefined) || (show(route) && route.children.length === 0)"
-                :num="route.num"
-                :to="route.to"
-                :key="route.name"
-                :exact="route.exact"
-                @click="route.click !== undefined ? route.click : null"
-            >{{ route.name }}</base-sidebar-list-item>
-
-            <base-sidebar-list-title
-                v-if="show(route) && route.children !== undefined && route.children.length"
-                :key="route.name"
-                :num="route.num"
-                :title="route.name"
-                :open="route.open"
-                :exact="route.exact"
-                @click="route.click !== undefined ? route.click : null"
-            >
-                <app-dynamic-sidebar :routes="route.children" />
-            </base-sidebar-list-title>
-        </template>
+    <div :class="$style.sidebar">
+        <div v-if="$slots.top" :class="$style.sidebarTop"><slot name="top" /></div>
+        <base-sidebar-menu :class="$style.menu" :routes="routes" />
+        <div v-if="$slots.bottom" :class="$style.sidebarBottom"><slot name="bottom" /></div>
     </div>
 </template>
 <script>
@@ -30,7 +11,7 @@
     props: {
       /**
        * [
-       *  { name: 'テスト親', path: '', num: null, click: null, open: true, children: [], exact: false }
+       *  { name: 'name of menu', path: '', num: null, click: null, open: true, children: [], exact: false }
        * ]
        */
       routes: {
@@ -38,16 +19,17 @@
         default: () => []
       }
     },
-    computed: {
-      show() {
-        return (route) => {
-          if (route.show === undefined) return true
-          if (typeof route.show === 'boolean') return route.show
-          if (typeof route.show === 'function')
-            return route.show(route, this.routes)
-          return true
-        }
-      }
-    }
+    computed: {}
   }
 </script>
+<style lang="scss" module>
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    <%- this.background(background) %>
+    <%- this.width(width) %>
+}
+.menu {
+    flex: 1;
+}
+</style>

@@ -4,11 +4,12 @@
             <div :class="$style.title_text">{{ title }}</div>
             <base-number-budge :class="$style.title_num" v-if="num">{{ num }}</base-number-budge>
             <base-icon
+                v-if="togglable"
                 :class="[{ [$style.arrow_open]: myOpen }, $style.title_arrow]"
                 @click="click"
                 name="ub-arrow-down"
                 size="14px"
-                color="white"
+                color="<%- icon.color %>"
             />
         </div>
         <slot />
@@ -22,13 +23,13 @@
         style: String,
         default: ''
       },
-      to: {
-        type: String,
-        default: null
-      },
       num: {
         type: Number,
         default: null
+      },
+      togglable: {
+        type: Boolean,
+        default: false
       },
       open: {
         type: Boolean,
@@ -37,7 +38,7 @@
     },
     data() {
       return {
-        myOpen: this.$props.open
+        myOpen: this.$props.togglable ? this.$props.open : true
       }
     },
     computed: {
@@ -62,15 +63,17 @@
         transition-delay: 0;
         transition-timing-function: linear;
         max-height: 46px;
+        font-weight: bold;
     }
     .menu_toggle {
         <%- this.background(background) %>
+        border-bottom: 1px solid rgba(0,0,0,.06);
     }
     .menu_toggle_open {
         max-height: 1200px;
     }
     .menu_toggle_title {
-        background: rgba(255, 255, 255, 0.1);
+        <%- this.background(background) %>
         padding: 16px;
         height: 46px;
         box-sizing: border-box;
@@ -84,6 +87,7 @@
     .title_arrow {
         margin: 0 0 0 16px;
         cursor: pointer;
+        transition-delay: 0;
         transition: 0.4s;
     }
     .arrow_open {
